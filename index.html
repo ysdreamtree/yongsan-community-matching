@@ -447,7 +447,9 @@ const tgt=id=>(counts[id]||0)+(basket.has(id)?1:0);
 const shownOr=id=>shown[id]!=null?shown[id]:tgt(id);
 const pById=id=>PROGRAMS.find(x=>x.id===id);
 const selLabel=id=>isApply(pById(id))?'+ 신청 선택':'+ 관심 사업 선택';
+const isClosed=id=>{const q=pById(id);return !!(q&&q.status==='closed')};
 function intBtn(id,cls){
+  if(isClosed(id))return '<button type="button" class="btn '+(cls||'small')+' int" disabled>접수 마감</button>';
   const on=basket.has(id);
   return '<button type="button" class="btn '+(cls||'small')+' int'+(on?' on':'')+'" data-int="'+esc(id)+'" aria-pressed="'+on+'">'+(on?'✓ 선택됨':selLabel(id))+'</button>';
 }
@@ -570,7 +572,7 @@ function showDetail(id){
     (p.images&&p.images.length?'<div class="gal">'+p.images.map(m=>'<figure><img src="'+esc(m.src)+'" alt="'+esc(m.alt||'')+'" loading="lazy"><figcaption>'+esc(m.cap||'')+'</figcaption></figure>').join('')+'</div>':'')+
     '<dl>'+rows.map(r=>'<div><dt>'+esc(r[0])+'</dt><dd>'+esc(r[1])+'</dd></div>').join('')+'</dl>'+
     '<div class="row">'+intBtn(p.id,'')+
-    '<button type="button" class="btn" data-open="form" data-type="interest" data-program="'+esc(p.id)+'">신청하기</button>'+
+    (isClosed(p.id)?'':'<button type="button" class="btn" data-open="form" data-type="interest" data-program="'+esc(p.id)+'">신청하기</button>')+
     '<button type="button" class="btn line" data-close="1">닫기</button></div>');
 }
 
