@@ -227,6 +227,15 @@ pre{white-space:pre-wrap;word-break:break-word;background:#f7f6f1;border:1px sol
 .bar .btn:hover{background:#ff9f8a;border-color:#ff9f8a}
 .linkx{background:none;border:0;color:#cdd3ee;text-decoration:underline;cursor:pointer;min-height:44px;padding:0 10px;font-size:14.5px}
 body.hasbar{padding-bottom:84px}
+.cmp{display:grid;grid-template-columns:1fr auto 1fr;gap:10px;align-items:stretch;margin:14px 0}
+.cmp>div{border-radius:12px;padding:12px 16px;font-size:15px}
+.cmp .b{background:#f1f0ea;border:1px solid var(--line)}
+.cmp .a{background:#e9f7f1;border:2px solid #17806f}
+.cmp h4{margin:0 0 6px;font-size:15px}
+.cmp ul{margin:0;padding-left:18px}
+.cmp li{margin:2px 0}
+.cmp .ar{align-self:center;font-size:20px;color:var(--navy);font-weight:800}
+@media(max-width:700px){.cmp{grid-template-columns:1fr}.cmp .ar{transform:rotate(90deg);justify-self:center}}
 .gal{display:flex;gap:10px;overflow-x:auto;margin:12px 0;padding-bottom:6px}
 .gal figure{margin:0;flex:0 0 auto}
 .gal img{display:block;height:190px;width:auto;max-width:none;border:2px solid #cfcde0;border-radius:10px;background:#fff}
@@ -545,6 +554,11 @@ function closeDlg(){if(dlg.open)dlg.close()}
 $('#dlg-x').onclick=closeDlg;
 dlg.addEventListener('click',e=>{if(e.target===dlg)closeDlg()});
 
+function compareHtml(p){
+  const c=p.compare;if(!c||!c.before||!c.after)return '';
+  const col=(x,cls)=>'<div class="'+cls+'"><h4>'+esc(x.title)+'</h4><ul>'+(x.items||[]).map(i=>'<li>'+esc(i)+'</li>').join('')+'</ul></div>';
+  return '<div class="cmp">'+col(c.before,'b')+'<span class="ar" aria-hidden="true">▶</span>'+col(c.after,'a')+'</div>';
+}
 function showDetail(id){
   const p=PROGRAMS.find(x=>x.id===id);if(!p)return;
   track('view_detail',{program:id});
@@ -552,7 +566,7 @@ function showDetail(id){
   const rows=[['대상',(p.targets||[]).join(' · ')],['주요 대상',p.who],[p.book?'지원 내용':'협력 내용',p.support],['일정',p.period],['신청 방법',p.how],['유의사항',p.notes],['담당',p.owner],['문의',p.contact]].filter(r=>r[1]);
   openDlg('사업 상세',
     '<span class="pill" style="background:'+esc(lineColor(p.category))+'">'+esc(p.category)+'</span> <span class="st '+s[1]+'">'+esc(s[0])+'</span>'+
-    '<h2>'+esc(p.title)+'</h2><p>'+esc(p.summary)+'</p>'+linksHtml(p,'dlinks')+
+    '<h2>'+esc(p.title)+'</h2><p>'+esc(p.summary)+'</p>'+linksHtml(p,'dlinks')+compareHtml(p)+
     (p.images&&p.images.length?'<div class="gal">'+p.images.map(m=>'<figure><img src="'+esc(m.src)+'" alt="'+esc(m.alt||'')+'" loading="lazy"><figcaption>'+esc(m.cap||'')+'</figcaption></figure>').join('')+'</div>':'')+
     '<dl>'+rows.map(r=>'<div><dt>'+esc(r[0])+'</dt><dd>'+esc(r[1])+'</dd></div>').join('')+'</dl>'+
     '<div class="row">'+intBtn(p.id,'')+
