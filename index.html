@@ -491,7 +491,7 @@ function showDetail(id){
   const p=PROGRAMS.find(x=>x.id===id);if(!p)return;
   track('view_detail',{program:id});
   const s=STATUS[p.status||'open']||['',''];
-  const rows=[['대상',(p.targets||[]).join(' · ')],['주요 대상',p.who],['지원 내용',p.support],['일정',p.period],['신청 방법',p.how],['유의사항',p.notes],['담당',p.owner]].filter(r=>r[1]);
+  const rows=[['대상',(p.targets||[]).join(' · ')],['주요 대상',p.who],['지원 내용',p.support],['일정',p.period],['신청 방법',p.how],['유의사항',p.notes],['담당',p.owner],['문의',p.contact]].filter(r=>r[1]);
   openDlg('사업 상세',
     '<span class="pill" style="background:'+esc(lineColor(p.category))+'">'+esc(p.category)+'</span> <span class="st '+s[1]+'">'+esc(s[0])+'</span>'+
     '<h2>'+esc(p.title)+'</h2><p>'+esc(p.summary)+'</p>'+
