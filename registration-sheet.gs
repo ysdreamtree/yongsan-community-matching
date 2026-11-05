@@ -34,7 +34,8 @@ var DEFAULT_PROGRAMS = [
   ['local-activity', '지역 독서·문화활동'],
   ['ybti-ip', 'YBTI 독서성향 콘텐츠 연계'],
   ['integrity-coop', '청렴·윤리경영 협력'],
-  ['junior-story', '어린이기자단 취재·동네 이야기 협력']
+  ['junior-story', '어린이기자단 취재·동네 이야기 협력'],
+  ['child-member', '어린이 도서관 회원가입 간소화 협력']
 ];
 
 /* 처음 한 번만 실행하세요. */

@@ -117,6 +117,7 @@ h3{font-size:20px;line-height:1.45;margin:0 0 6px;letter-spacing:-.02em;font-wei
 .bbs-r .t{font-weight:700}
 .bbs-r .ty{font-size:13px;font-weight:700;border-radius:999px;padding:1px 10px;background:#ffe3dc;justify-self:start}
 .bbs-r .ty.resource{background:#d8f5ee}
+.bbs-r .ty.example{background:#fff1b8}
 .bbs-e{padding:30px 16px;text-align:center;color:var(--muted)}
 .post-meta{color:var(--muted);font-size:14px;margin:0 0 12px}
 .post-body{white-space:pre-line}
@@ -317,7 +318,7 @@ body.hasbar{padding-bottom:84px}
         <button type="button" class="ask-btn c" data-open="form" data-type="recommend"><b>협력 대상 추천</b><span>공단과 협력하면 좋을 기업·기관·소상공인을 추천합니다.</span></button>
       </div>
       <h3 id="pb-title">공개된 제안</h3>
-      <p class="fnote">제안은 접수 후 총괄 승인을 거쳐 게시됩니다. 연락처는 공개하지 않습니다.</p>
+      <p class="fnote">접수된 제안은 총괄 승인 후 게시되며, 연락처는 공개하지 않습니다. ‘협력 예시’는 공단이 제시하는 예시입니다.</p>
       <div class="ptabs" id="f-ptype" role="group" aria-label="제안 종류"></div>
       <div class="bbs" id="pboard"></div>
     </div>
@@ -368,6 +369,7 @@ const STATUS={open:['모집 중','ok'],soon:['접수 예정',''],talk:['협의 �
   });
 })();
 const isApply=p=>!!(p&&p.book&&p.status==='open');
+const PTYPE={together:'협력사업 제안',resource:'자원 연계 제안',example:'협력 예시'};
 const TYPE={together:'협력사업 제안',resource:'자원 연계 제안',recommend:'협력 대상 추천',interest:'사업 신청·관심 등록'};
 const esc=s=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const $=s=>document.querySelector(s);
@@ -421,7 +423,7 @@ function renderFilters(){
   const o=(v,l,cur)=>'<option value="'+esc(v)+'"'+(v===cur?' selected':'')+'>'+esc(l)+'</option>';
   $('#s-target').innerHTML=o('전체','대상 전체',st.target)+tg.map(v=>o(v,v,st.target)).join('');
   $('#s-status').innerHTML=o('전체','상태 전체',st.status)+ss.map(v=>o(v,(STATUS[v]||[v])[0],st.status)).join('');
-  $('#f-ptype').innerHTML=[['all','전체'],['together','협력사업 제안'],['resource','자원 연계 제안']].map(p=>'<button type="button" class="chip'+(p[0]===st.ptype?' on':'')+'" data-f="ptype" data-v="'+p[0]+'" aria-pressed="'+(p[0]===st.ptype)+'">'+p[1]+'</button>').join('');
+  $('#f-ptype').innerHTML=[['all','전체'],['example','협력 예시'],['together','협력사업 제안'],['resource','자원 연계 제안']].map(p=>'<button type="button" class="chip'+(p[0]===st.ptype?' on':'')+'" data-f="ptype" data-v="'+p[0]+'" aria-pressed="'+(p[0]===st.ptype)+'">'+p[1]+'</button>').join('');
 }
 function match(p){
   const hay=[p.title,p.summary,p.support,p.owner,p.category,...(p.targets||[]),...(p.tags||[])].join(' ').toLowerCase();
@@ -522,17 +524,18 @@ function renderBoard(){
   $('#pboard').innerHTML=head+(rows.length?rows.map((r,n)=>{
     const x=r[0];
     return '<button type="button" class="bbs-r" data-open="post" data-i="'+r[1]+'"><span>'+(rows.length-n)+'</span>'+
-      '<span class="ty'+(x.type==='resource'?' resource':'')+'">'+esc(TYPE[x.type]||'')+'</span>'+
+      '<span class="ty'+(x.type==='resource'?' resource':x.type==='example'?' example':'')+'">'+esc(PTYPE[x.type]||'')+'</span>'+
       '<span class="t">'+esc(x.title)+'</span><span>'+esc(x.org)+'</span><span>'+esc(x.date||'')+'</span></button>';
   }).join(''):'<div class="bbs-e">아직 게시된 제안이 없습니다.</div>');
 }
 function showPost(i){
   const x=PROPOSALS[i];if(!x)return;
   openDlg('제안 상세',
-    '<span class="pill" style="background:'+(x.type==='resource'?'#17806f':'#c8452c')+'">'+esc(TYPE[x.type]||'')+'</span>'+
+    '<span class="pill" style="background:'+(x.type==='resource'?'#17806f':x.type==='example'?'#a86a00':'#c8452c')+'">'+esc(PTYPE[x.type]||'')+'</span>'+
     '<h2>'+esc(x.title)+'</h2><p class="post-meta">'+esc(x.org)+(x.kind?' · '+esc(x.kind):'')+(x.date?' · '+esc(x.date):'')+'</p>'+
     '<p class="post-body">'+esc(x.body)+'</p>'+
-    '<div class="row"><button type="button" class="btn" data-open="form" data-type="together" data-ref="'+i+'">협력 의사 전달</button><button type="button" class="btn line" data-close="1">닫기</button></div>');
+    (x.type==='example'?'<p class="tip">공단이 제시하는 협력 예시입니다. 실제 접수된 제안이 아닙니다.</p>':'')+
+    '<div class="row">'+(x.type==='example'?(x.program?'<button type="button" class="btn" data-open="form" data-type="interest" data-program="'+esc(x.program)+'">관심 사업 등록</button>':'<button type="button" class="btn" data-open="form" data-type="together">협력 제안하기</button>'):'<button type="button" class="btn" data-open="form" data-type="together" data-ref="'+i+'">협력 의사 전달</button>')+'<button type="button" class="btn line" data-close="1">닫기</button></div>');
 }
 
 /* ---------- 팝업 ---------- */
