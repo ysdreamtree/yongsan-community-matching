@@ -32,7 +32,8 @@ var DEFAULT_PROGRAMS = [
   ['reading-spread', '기업·기관 독서경영 확산'],
   ['culture-art', '문화예술 협력 프로젝트'],
   ['local-activity', '지역 독서·문화활동'],
-  ['ybti-ip', 'YBTI 독서성향 콘텐츠 연계']
+  ['ybti-ip', 'YBTI 독서성향 콘텐츠 연계'],
+  ['integrity-coop', '청렴·윤리경영 협력']
 ];
 
 /* 처음 한 번만 실행하세요. */
