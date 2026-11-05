@@ -87,7 +87,7 @@ h3{font-size:20px;line-height:1.45;margin:0 0 6px;letter-spacing:-.02em;font-wei
 .facts b{margin-right:6px}
 .cfoot{display:flex;align-items:center;gap:8px;border-top:1px solid var(--line);padding-top:12px}
 .st{font-size:13.5px;font-weight:700;border-radius:999px;padding:1px 12px;background:#ffeab0}
-.st.ok{background:#c9f0dc}.st.always{background:#cfe3ff}.st.closed{background:#e4e2dc;color:#555}
+.st.talk{background:#dfe9ff;color:#1d3a82}.st.ok{background:#c9f0dc}.st.always{background:#cfe3ff}.st.closed{background:#e4e2dc;color:#555}
 .grow{flex:1}
 .empty{grid-column:1/-1;text-align:center;border:2px dashed #cbc8d8;border-radius:14px;padding:34px 16px;color:var(--muted);background:#fff}
 .empty h3{color:var(--ink)}
@@ -107,6 +107,17 @@ h3{font-size:20px;line-height:1.45;margin:0 0 6px;letter-spacing:-.02em;font-wei
 .chip.on{background:var(--navy);border-color:var(--navy);color:#fff}
 .pcard{background:#fff;border-radius:14px;border:1px solid var(--line);padding:18px;border-top:6px solid var(--coral)}
 .pcard.resource{border-top-color:var(--mint)}
+.pcard .tag.ex{background:#fff1b8}
+.how2{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:0 0 18px}
+.how2 div{background:#fff;border:1px solid var(--line);border-radius:12px;padding:12px 16px;font-size:14.5px;color:#43424f}
+.how2 b{display:block;color:var(--ink);margin-bottom:2px}
+.fnote{margin:0 0 16px;font-size:14px;color:var(--muted)}
+.clinks{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 0}
+.clinks a,.dlinks a{display:inline-block;padding:7px 14px;border-radius:999px;border:2px solid var(--navy);color:var(--navy);font-weight:700;font-size:14.5px;text-decoration:none;background:#fff}
+.clinks a:hover,.dlinks a:hover{background:#eef0fb}
+.dlinks{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}
+.callus{margin:18px 0 0;font-size:15px;font-weight:700}
+@media(max-width:700px){.how2{grid-template-columns:1fr}}
 .pcard .tag{display:inline-block;font-size:13px;font-weight:700;border-radius:999px;padding:1px 12px;background:#ffe3dc;margin-bottom:8px}
 .pcard.resource .tag{background:#d8f5ee}
 .pcard small{display:block;color:var(--muted);font-size:13.5px;margin:0 0 8px}
@@ -243,7 +254,7 @@ body.hasbar{padding-bottom:84px}
     <div class="wrap hero-grid">
       <div>
         <h1>지역상생 협력사업을<br>한곳에서 안내합니다</h1>
-        <p class="lead">용산구시설관리공단은 지역 기업·기관·소상공인과 함께 지역상생 협력사업을 운영합니다. 참여 가능한 사업을 확인하고, 관심 사업 등록과 협력 제안을 접수합니다.</p>
+        <p class="lead">용산구시설관리공단은 지역 기업, 공공기관·복지기관·학교 등 기관, 소상공인과 함께 지역상생 협력사업을 운영합니다. 참여 가능한 사업을 확인하고, 관심 사업 등록·사업 신청과 협력 제안을 접수합니다.</p>
         <div class="cta">
           <a class="btn" href="#programs">협력사업 보기</a>
           <button class="btn soft" type="button" data-open="form" data-type="together">협력 제안 접수</button>
@@ -267,7 +278,12 @@ body.hasbar{padding-bottom:84px}
 
   <section id="programs">
     <div class="wrap">
-      <div class="sec-head"><h2>협력사업 안내</h2><p>분류별로 사업을 확인하고, 관심 사업을 선택해 등록할 수 있습니다.</p></div>
+      <div class="sec-head"><h2>협력사업 안내</h2><p>분류별로 사업을 확인하고, 사업을 선택해 등록·신청할 수 있습니다.</p></div>
+      <div class="how2">
+        <div><b>관심 사업 등록</b>참여 의사를 미리 알리는 접수입니다. 담당자가 연락하여 내용과 일정을 안내합니다.</div>
+        <div><b>협력 제안</b>목록에 없는 협력 아이디어를 제안하는 접수입니다. 총괄 검토 후 소관 부서가 연락합니다.</div>
+      </div>
+      <p class="fnote">협력 가능 여부와 범위는 협력 내용과 각 기관의 내부 규정에 따라 협의하여 결정합니다.</p>
       <div class="route" id="route" role="group" aria-label="분류 선택"></div>
       <div class="finder">
         <label class="search"><span aria-hidden="true">🔍</span><input id="q" type="search" placeholder="사업명, 키워드 검색" aria-label="사업 검색" autocomplete="off"></label>
@@ -281,13 +297,14 @@ body.hasbar{padding-bottom:84px}
 
   <section id="proposals">
     <div class="wrap">
-      <div class="sec-head"><h2>협력 제안</h2><p>사업 목록에 없는 협력도 제안할 수 있습니다.</p></div>
+      <div class="sec-head"><h2>협력 제안</h2><p>사업 목록에 없는 협력은 제안으로 접수합니다. 총괄 검토 후 소관 부서에서 연락드립니다.</p></div>
       <div class="ask">
         <button type="button" class="ask-btn a" data-open="form" data-type="together"><b>협력사업 제안</b><span>공동 프로그램, 교육, 문화활동 등 공단과 함께 추진하고자 하는 협력사업을 제안합니다.</span></button>
         <button type="button" class="ask-btn b" data-open="form" data-type="resource"><b>자원 연계 제안</b><span>시설·공간, 인력, 콘텐츠 등 지역 협력에 활용할 수 있는 자원의 연계를 제안합니다.</span></button>
         <button type="button" class="ask-btn c" data-open="form" data-type="recommend"><b>협력 대상 추천</b><span>공단과 협력하면 좋을 기업·기관·소상공인을 추천합니다.</span></button>
       </div>
-      <h3>공개된 제안</h3>
+      <h3 id="pb-title">공개된 제안</h3>
+      <p class="fnote" id="pb-note" hidden>아래는 제안 방식을 보여 드리는 예시입니다. 실제 제안은 총괄 승인 후 게시됩니다.</p>
       <div class="ptabs" id="f-ptype" role="group" aria-label="제안 종류"></div>
       <div class="grid" id="pboard"></div>
     </div>
@@ -299,22 +316,24 @@ body.hasbar{padding-bottom:84px}
       <div class="stations">
         <div class="station" data-n="1" style="--k:#3b4cb8"><h3>등록·제안 접수</h3><p>참여를 희망하는 사업을 선택하거나 협력 제안을 접수합니다.</p></div>
         <div class="station" data-n="2" style="--k:#c8452c"><h3>총괄 검토</h3><p>접수 내용을 검토하고 소관 부서와 담당자를 지정합니다.</p></div>
-        <div class="station" data-n="3" style="--k:#17806f"><h3>담당자 연락·협의</h3><p>담당자가 연락하여 협력 범위와 일정을 협의하고 추진합니다.</p></div>
+        <div class="station" data-n="3" style="--k:#17806f"><h3>담당자 연락·협의</h3><p>접수일로부터 영업일 3일 이내에 담당자가 연락하여 협력 범위와 일정을 협의하고 추진합니다.</p></div>
       </div>
       <div class="faq">
-        <details open><summary>참여 대상은 누구인가요?</summary><p>기업, 기관, 소상공인 등 사업장을 대상으로 합니다. 개인은 대상이 아닙니다.</p></details>
-        <details><summary>준비 중인 사업도 신청할 수 있나요?</summary><p>접수 전인 사업입니다. 관심 사업으로 등록하시면 담당 부서에서 확인할 수 있으며, 접수가 시작되면 이 페이지에 안내합니다.</p></details>
+        <details open><summary>참여 대상은 누구인가요?</summary><p>기업, 공공기관·복지기관·학교 등 기관, 소상공인 등 사업장을 대상으로 합니다. 개인은 대상이 아닙니다.</p></details>
+        <details><summary>‘접수 예정’, ‘협의 가능’은 무슨 뜻인가요?</summary><p>‘접수 예정’은 접수 시작일 전의 사업으로, 관심 사업으로 등록하면 접수 시작 시 안내받을 수 있습니다. ‘협의 가능’은 기간 없이 상시 협의하는 사업입니다.</p></details>
+        <details><summary>협력은 어떻게 결정되나요?</summary><p>협력 내용과 각 기관의 내부 규정에 따라 협의하여 결정합니다. 규정상 어려운 사항은 제외하고 가능한 범위에서 추진합니다.</p></details>
         <details><summary>접수한 내용은 공개되나요?</summary><p>접수 내용은 담당자가 먼저 확인합니다. 공개에 동의한 요약만 총괄 승인 후 게시하며, 연락처는 공개하지 않습니다.</p></details>
         <details><summary>입력한 정보는 어떻게 사용되나요?</summary><p>협력사업 안내와 회신을 위해 사용합니다. 개인 연락처보다 대표번호 또는 공용 메일 입력을 권장합니다.</p></details>
       </div>
+      <p class="callus" id="callus" hidden></p>
     </div>
   </section>
 </main>
 
-<footer><div class="wrap"><strong>용산구시설관리공단 · 지역상생 협력 플랫폼</strong><span>지원 범위와 일정은 사업별 확인 후 확정됩니다.</span></div></footer>
+<footer><div class="wrap"><strong>용산구시설관리공단 · 지역상생 협력 플랫폼</strong><span id="ft-phone"></span><span>협력 범위와 일정은 사업별 협의 후 확정됩니다.</span></div></footer>
 
 <div class="bar" id="bar" hidden role="region" aria-label="선택한 관심 사업">
-  <div class="wrap"><b id="bar-txt"></b><span><button type="button" class="linkx" id="bar-clear">선택 해제</button><button type="button" class="btn" id="bar-send">관심 사업 등록</button></span></div>
+  <div class="wrap"><b id="bar-txt"></b><span><button type="button" class="linkx" id="bar-clear">선택 해제</button><button type="button" class="btn" id="bar-send">등록·신청하기</button></span></div>
 </div>
 
 <dialog id="dlg" aria-labelledby="dlg-title">
@@ -326,8 +345,17 @@ body.hasbar{padding-bottom:84px}
 <script>
 'use strict';
 const SITE=window.SITE||{}, PROGRAMS=window.PROGRAMS||[], PROPOSALS=window.PROPOSALS||[], CATS=window.CATEGORIES||{};
-const STATUS={open:['모집 중','ok'],soon:['준비 중',''],always:['상시','always'],closed:['마감','closed']};
-const TYPE={together:'협력사업 제안',resource:'자원 연계 제안',recommend:'협력 대상 추천',interest:'관심 사업 등록'};
+const STATUS={open:['모집 중','ok'],soon:['접수 예정',''],talk:['협의 가능','talk'],always:['상시','always'],closed:['마감','closed']};
+/* 접수 기간(opens/closes, YYYY-MM-DD)을 적으면 상태가 날짜에 맞춰 자동으로 바뀝니다. */
+(function(){
+  const d=new Date(),t=d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
+  (window.PROGRAMS||[]).forEach(p=>{
+    if(p.closes&&t>p.closes)p.status='closed';
+    else if(p.opens&&t>=p.opens&&(p.status==='soon'||!p.status))p.status='open';
+  });
+})();
+const isApply=p=>!!(p&&p.book&&p.status==='open');
+const TYPE={together:'협력사업 제안',resource:'자원 연계 제안',recommend:'협력 대상 추천',interest:'사업 신청·관심 등록'};
 const esc=s=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const $=s=>document.querySelector(s);
 const uniq=a=>[...new Set(a)];
@@ -393,25 +421,27 @@ function match(p){
 /* ---------- 관심 사업 담기 · 숫자 ---------- */
 const tgt=id=>(counts[id]||0)+(basket.has(id)?1:0);
 const shownOr=id=>shown[id]!=null?shown[id]:tgt(id);
+const pById=id=>PROGRAMS.find(x=>x.id===id);
+const selLabel=id=>isApply(pById(id))?'+ 신청 선택':'+ 관심 사업 선택';
 function intBtn(id,cls){
   const on=basket.has(id);
-  return '<button type="button" class="btn '+(cls||'small')+' int'+(on?' on':'')+'" data-int="'+esc(id)+'" aria-pressed="'+on+'">'+(on?'✓ 선택됨':'+ 관심 사업 선택')+'</button>';
+  return '<button type="button" class="btn '+(cls||'small')+' int'+(on?' on':'')+'" data-int="'+esc(id)+'" aria-pressed="'+on+'">'+(on?'✓ 선택됨':selLabel(id))+'</button>';
 }
 function chip(id){
-  return REG?'<span class="cnt'+(basket.has(id)?' mine':'')+'" data-cnt="'+esc(id)+'">관심 <b>'+shownOr(id)+'</b>건</span>':'';
+  return REG?'<span class="cnt'+(basket.has(id)?' mine':'')+'" data-cnt="'+esc(id)+'"'+(shownOr(id)>0?'':' hidden')+'>'+(isApply(pById(id))?'신청':'관심')+' <b>'+shownOr(id)+'</b>건</span>':'';
 }
 function syncInt(){
   document.querySelectorAll('[data-int]').forEach(b=>{
     const on=basket.has(b.dataset.int);
     b.classList.toggle('on',on);b.setAttribute('aria-pressed',on);
-    b.textContent=on?'✓ 선택됨':'+ 관심 사업 선택';
+    b.textContent=on?'✓ 선택됨':selLabel(b.dataset.int);
   });
 }
 function updateBar(){
   const n=basket.size;
   $('#bar').hidden=n===0;
   document.body.classList.toggle('hasbar',n>0);
-  $('#bar-txt').textContent='관심 사업 '+n+'개 선택';
+  $('#bar-txt').textContent='선택한 사업 '+n+'개';
 }
 function paintCounts(){
   if(!REG)return;
@@ -420,9 +450,10 @@ function paintCounts(){
     const from=shown[id]!=null?shown[id]:(parseInt(b.textContent,10)||0);
     shown[id]=t;
     el.classList.toggle('mine',basket.has(id));
-    if(from===t||REDUCED){b.textContent=t;return}
+    el.hidden=t<=0&&from<=0;
+    if(from===t||REDUCED){b.textContent=t;el.hidden=t<=0;return}
     const t0=performance.now();
-    (function step(now){const k=Math.min(1,(now-t0)/700);b.textContent=Math.round(from+(t-from)*k);if(k<1)requestAnimationFrame(step)})(t0);
+    (function step(now){const k=Math.min(1,(now-t0)/700);b.textContent=Math.round(from+(t-from)*k);if(k<1)requestAnimationFrame(step);else el.hidden=t<=0})(t0);
   });
   $('#total').textContent=total>0?' · 누적 접수 '+total+'건':'';
 }
@@ -440,18 +471,21 @@ async function fetchCounts(){
 }
 
 /* ---------- 사업 카드 / 제안 카드 ---------- */
+function linksHtml(p,cls){
+  return p.links&&p.links.length?'<div class="'+cls+'">'+p.links.map(l=>'<a href="'+esc(l.url)+'" target="_blank" rel="noopener noreferrer" data-ev="link_click" data-program="'+esc(p.id)+'">'+esc(l.label)+' ↗</a>').join('')+'</div>':'';
+}
 function card(p){
   const s=STATUS[p.status||'open']||['',''], k=esc(lineColor(p.category));
   const stat='<span class="st '+s[1]+'">'+esc(s[0])+'</span>';
   const btns='<button type="button" class="btn line small" data-open="detail" data-id="'+esc(p.id)+'">자세히</button>'+intBtn(p.id,'small');
   const tg='<div class="tg">'+(p.targets||[]).map(t=>'<span>'+esc(t)+'</span>').join('')+'</div>';
   if(p.featured){
-    const rows=[['대상',(p.targets||[]).join(' · ')],['지원',p.support],['신청 방법',p.how],['일정',p.period],['유의사항',p.notes]].filter(r=>r[1]);
+    const rows=[['대상',(p.targets||[]).join(' · ')],[p.book?'지원 내용':'협력 내용',p.support],['신청 방법',p.how],['일정',p.period],['유의사항',p.notes]].filter(r=>r[1]);
     return '<article class="card feat" style="--k:'+k+'"><div>'+
       '<div class="ftop"><span class="pill">'+esc(p.category)+'</span><span class="pill star">대표 사업</span></div>'+
       '<h3>'+esc(p.title)+'</h3>'+(p.lead?'<p class="lead2">'+esc(p.lead)+'</p>':'')+
       '<p>'+esc(p.summary)+'</p>'+(p.who?'<p class="who"><b>주요 대상</b>'+esc(p.who)+'</p>':'')+
-      '<div class="cfoot">'+stat+chip(p.id)+'<span class="grow"></span>'+btns+'</div></div>'+
+      linksHtml(p,'clinks')+'<div class="cfoot">'+stat+chip(p.id)+'<span class="grow"></span>'+btns+'</div></div>'+
       '<dl class="fd">'+rows.map(r=>'<div><dt>'+esc(r[0])+'</dt><dd>'+esc(r[1])+'</dd></div>').join('')+'</dl></article>';
   }
   return '<article class="card" style="--k:'+k+'">'+
@@ -459,7 +493,7 @@ function card(p){
     '<h3>'+esc(p.title)+'</h3>'+(p.lead?'<p class="lead2">'+esc(p.lead)+'</p>':'')+
     '<p>'+esc(p.summary)+'</p>'+tg+
     (p.who?'<p class="who"><b>주요 대상</b>'+esc(p.who)+'</p>':'')+
-    '<div class="facts">'+(p.support?'<div><b>지원</b>'+esc(p.support)+'</div>':'')+'</div>'+
+    '<div class="facts">'+(p.support?'<div><b>'+(p.book?'지원':'협력')+'</b>'+esc(p.support)+'</div>':'')+'</div>'+linksHtml(p,'clinks')+
     '<div class="cfoot two"><div class="crow">'+stat+chip(p.id)+'</div><div class="cbtn">'+btns+'</div></div></article>';
 }
 function renderList(){
@@ -470,12 +504,14 @@ function renderList(){
   paintCounts();
 }
 function renderBoard(){
+  const ex=PROPOSALS.length>0&&PROPOSALS.every(x=>x.example);
+  const pn=$('#pb-note');if(pn)pn.hidden=!ex;
   const rows=PROPOSALS.map((x,i)=>[x,i]).filter(r=>st.ptype==='all'||r[0].type===st.ptype);
   $('#pboard').innerHTML=rows.length?rows.map(r=>{
     const x=r[0],i=r[1];
-    return '<article class="pcard '+(x.type==='resource'?'resource':'')+'"><span class="tag">'+esc(TYPE[x.type]||'')+'</span>'+
+    return '<article class="pcard '+(x.type==='resource'?'resource':'')+'"><span class="tag">'+esc(TYPE[x.type]||'')+'</span>'+(x.example?' <span class="tag ex">예시</span>':'')+
       '<h3>'+esc(x.title)+'</h3><small>'+esc(x.org)+(x.kind?' · '+esc(x.kind):'')+(x.date?' · '+esc(x.date):'')+'</small>'+
-      '<p>'+esc(x.body)+'</p><button type="button" class="btn line small" data-open="form" data-type="together" data-ref="'+i+'">협력 의사 전달</button></article>';
+      '<p>'+esc(x.body)+'</p>'+(x.example?'':'<button type="button" class="btn line small" data-open="form" data-type="together" data-ref="'+i+'">협력 의사 전달</button>')+'</article>';
   }).join(''):
     '<div class="empty"><h3>공개된 제안이 없습니다</h3><p>제안은 위 항목에서 접수할 수 있습니다.</p></div>';
 }
@@ -491,14 +527,14 @@ function showDetail(id){
   const p=PROGRAMS.find(x=>x.id===id);if(!p)return;
   track('view_detail',{program:id});
   const s=STATUS[p.status||'open']||['',''];
-  const rows=[['대상',(p.targets||[]).join(' · ')],['주요 대상',p.who],['지원 내용',p.support],['일정',p.period],['신청 방법',p.how],['유의사항',p.notes],['담당',p.owner],['문의',p.contact]].filter(r=>r[1]);
+  const rows=[['대상',(p.targets||[]).join(' · ')],['주요 대상',p.who],[p.book?'지원 내용':'협력 내용',p.support],['일정',p.period],['신청 방법',p.how],['유의사항',p.notes],['담당',p.owner],['문의',p.contact]].filter(r=>r[1]);
   openDlg('사업 상세',
     '<span class="pill" style="background:'+esc(lineColor(p.category))+'">'+esc(p.category)+'</span> <span class="st '+s[1]+'">'+esc(s[0])+'</span>'+
-    '<h2>'+esc(p.title)+'</h2><p>'+esc(p.summary)+'</p>'+
+    '<h2>'+esc(p.title)+'</h2><p>'+esc(p.summary)+'</p>'+linksHtml(p,'dlinks')+
     (p.images&&p.images.length?'<div class="gal">'+p.images.map(m=>'<figure><img src="'+esc(m.src)+'" alt="'+esc(m.alt||'')+'" loading="lazy"><figcaption>'+esc(m.cap||'')+'</figcaption></figure>').join('')+'</div>':'')+
     '<dl>'+rows.map(r=>'<div><dt>'+esc(r[0])+'</dt><dd>'+esc(r[1])+'</dd></div>').join('')+'</dl>'+
     '<div class="row">'+intBtn(p.id,'')+
-    '<button type="button" class="btn" data-open="form" data-type="interest" data-program="'+esc(p.id)+'">관심 사업 등록</button>'+
+    '<button type="button" class="btn" data-open="form" data-type="interest" data-program="'+esc(p.id)+'">'+(isApply(p)?'신청하기':'관심 사업 등록')+'</button>'+
     '<button type="button" class="btn line" data-close="1">닫기</button></div>');
 }
 
@@ -528,7 +564,7 @@ function buildText(d,progs){
   ].filter(Boolean).join('\n');
 }
 
-const BOOKP=PROGRAMS.find(p=>p.book)||null;
+const BOOKP=PROGRAMS.find(isApply)||null;
 function bookFields(){
   if(!BOOKP)return '';
   const b=BOOKP.book,n=b.max||3;let rows='';
@@ -549,7 +585,7 @@ function readBooks(f){
   }
   if(!list.length)return{text:'',err:'희망 도서를 1권 이상 입력해 주세요.'};
   const c=f.bconcern.value.trim();
-  return{text:'[희망 도서]\n'+list.join('\n')+(c?'\n[업무·생활 고민] '+c:''),err:''};
+  return{text:'[도서 지원 신청 · 희망 도서]\n'+list.join('\n')+(c?'\n[업무·생활 고민] '+c:''),err:''};
 }
 function showForm(o){
   const ref=o.ref!=null?PROPOSALS[o.ref]:null;
@@ -557,7 +593,7 @@ function showForm(o){
   track('start_form',{type:o.type,program:[...sel][0]||''});
   const boxes=PROGRAMS.map(p=>'<label class="chk"><input type="checkbox" name="prog" value="'+esc(p.id)+'"'+(sel.has(p.id)?' checked':'')+'><span>'+esc(p.title)+'</span></label>').join('');
   openDlg('접수',
-    '<h2>'+(o.type==='interest'?'관심 사업 등록':'협력 제안 접수')+'</h2>'+
+    '<h2>'+(o.type==='interest'?'사업 신청·관심 등록':'협력 제안 접수')+'</h2>'+(o.type==='interest'?'<p class="tip">관심 사업 등록은 참여 의사를 미리 알리는 접수입니다. 담당자가 연락하여 내용과 일정을 안내합니다.</p>':'')+
     (ref?'<p class="tip">‘'+esc(ref.title)+'’ ('+esc(ref.org)+') 제안에 협력 의사를 전달합니다.</p>':'')+
     '<form id="f" novalidate>'+
     '<label class="fld">접수 유형<select name="type">'+Object.keys(TYPE).map(k=>'<option value="'+k+'"'+(k===o.type?' selected':'')+'>'+TYPE[k]+'</option>').join('')+'</select></label>'+
@@ -575,7 +611,7 @@ function showForm(o){
   const f=$('#f');
   const sync=()=>{
     const t=f.type.value,rec=t==='recommend',it=t==='interest';
-    $('#l-prog').textContent=it?'관심 사업 (복수 선택 가능)':'관련 사업 (해당 시 선택)';
+    $('#l-prog').textContent=it?'신청·관심 사업 (복수 선택 가능)':'관련 사업 (해당 시 선택)';
     $('#l-name').textContent=rec?'추천 대상 이름':'기관·업체명';
     $('#l-body').textContent=rec?'추천 사유 및 공식 홈페이지':it?'전달할 내용 (선택)':'제안 내용';
     $('#w-kind').hidden=rec;$('#w-person').hidden=rec;$('#w-contact').hidden=rec;
@@ -592,7 +628,7 @@ function showForm(o){
     const v={name:f.name.value.trim(),person:f.person.value.trim(),contact:f.contact.value.trim(),body:f.body.value.trim()};
     const agreed=(f.querySelector('[name=consent]')||{}).checked;
     const miss=!v.name?(rec?'추천 대상 이름을 입력해 주세요.':'기관·업체명을 입력해 주세요.')
-      :(it&&!progs.length)?'관심 사업을 한 개 이상 선택해 주세요.'
+      :(it&&!progs.length)?'사업을 한 개 이상 선택해 주세요.'
       :(!rec&&!v.person)?'담당자 성함을 입력해 주세요.'
       :(!rec&&!v.contact)?'연락처를 입력해 주세요.'
       :(!it&&!v.body)?'내용을 입력해 주세요.'
@@ -619,7 +655,7 @@ async function sendReg(data,progs){
     if(j&&j.ok){
       progs.forEach(id=>{counts[id]=(counts[id]||0)+1;basket.delete(id)});
       total++;syncInt();paintCounts();updateBar();
-      openDlg('접수 완료','<h2>접수가 완료되었습니다</h2><p class="tip">접수번호 <b>'+esc(j.id)+'</b></p><p>담당 부서에서 내용을 확인한 후 입력하신 연락처로 안내드립니다.</p><div class="row"><button type="button" class="btn" data-close="1">확인</button></div>');
+      openDlg('접수 완료','<h2>접수가 완료되었습니다</h2><p class="tip">접수번호 <b>'+esc(j.id)+'</b></p><p>담당 부서에서 내용을 확인한 후 접수일로부터 영업일 3일 이내에 입력하신 연락처로 안내드립니다.</p><div class="row"><button type="button" class="btn" data-close="1">확인</button></div>');
       setTimeout(fetchCounts,2500);
       return;
     }
@@ -675,6 +711,7 @@ $('#q').addEventListener('input',e=>{st.q=e.target.value.trim();renderList()});
 $('#s-target').addEventListener('change',e=>{st.target=e.target.value;renderList()});
 $('#s-status').addEventListener('change',e=>{st.status=e.target.value;renderList()});
 
+if(SITE.phone){$('#ft-phone').textContent='문의 '+SITE.phone;const c=$('#callus');c.textContent='문의 용산구시설관리공단 '+SITE.phone;c.hidden=false}
 renderFilters();renderList();renderBoard();updateBar();
 fetchCounts();
 setInterval(()=>{if(document.visibilityState==='visible')fetchCounts()},20000);

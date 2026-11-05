@@ -40,6 +40,9 @@ window.SITE = {
   // 주의: 이 주소는 사이트를 여는 누구나 볼 수 있습니다.
   email: 'ysdreamtree@naver.com',
 
+  // 사이트 하단·이용 안내에 표시되는 플랫폼 대표번호
+  phone: '02-2103-7782',
+
   // 성과·실적용 클릭 기록 (둘 다 비워 두면 아무것도 기록하지 않습니다)
   // 기록: 누른 버튼, 사업 이름, 제안 종류, 시각 / 미기록: 이름·연락처·내용
   analytics: {
@@ -51,10 +54,10 @@ window.SITE = {
 // 분류별 색 (선택). line 값을 적으면 노선·카드 색을 직접 정할 수 있습니다.
 // 적지 않아도 분류마다 색이 자동으로 정해집니다.
 window.CATEGORIES = {
-  '독서·학습': { color: '#9fd3ff', icon: 'book' },
-  '문화·예술': { color: '#ffb7c5', icon: 'star' },
-  '지역상생':  { color: '#9be3c1', icon: 'house' },
-  '청렴·윤리경영': { color: '#c9b8f0', icon: 'star' }
+  '독서·학습':       { color: '#9fd3ff', icon: 'book' },
+  '공단 고유사업 연계': { color: '#ffb7c5', icon: 'star' },
+  '지역상생':        { color: '#9be3c1', icon: 'house' },
+  '청렴·윤리경영':   { color: '#c9b8f0', icon: 'star' }
 };
 
 window.PROGRAMS = [
@@ -67,23 +70,24 @@ window.PROGRAMS = [
     owner: '독서경영',
     contact: '02-2103-7782',
     status: 'soon',
+    opens: '2026-11-11',   // 이 날짜가 되면 자동으로 '모집 중'으로 바뀌고 신청 입력칸이 열립니다.
     targets: ['기업', '기관', '소상공인'],
     lead: '사업장에 비치할 도서를 지원합니다.',
     summary: '신청 사업장의 희망 도서를 지원하며, 지원 도서에는 공단 지원 표시를 부착하여 사업장에 비치하고 함께 이용하도록 합니다.',
     who: '도서를 비치하여 구성원·이용자와 함께 읽고자 하는 기업·기관·소상공인',
     support: '사업장당 최대 3권, 권당 25,000원 이내 (사업 전체 예산 50만 원 한도)',
-    period: '접수 기간 확정 후 안내',
+    period: '2026.11.11.(수)부터 (마감일은 추후 안내)',
     how: '접수 기간 중 희망 도서와 업무·생활 고민(기대하는 인사이트)을 접수',
-    notes: '신청이 예산 한도를 초과할 경우의 선정 방식은 확정 후 안내합니다.',
+    notes: '신청이 예산 한도를 초과할 경우의 선정 방식은 확정 후 안내합니다. 기관 내부 규정에 따라 수령이 제한되는 경우 신청 전에 확인해 주세요.',
     tags: ['책', '독서경영']
   },
   {
     id: 'reading-spread',
     title: '기업·기관 독서경영 확산',
-    category: '독서·학습',
+    category: '공단 고유사업 연계',
     owner: '독서경영',
     contact: '02-2103-7782',
-    status: 'soon',
+    status: 'talk',
     targets: ['기업', '기관', '소상공인'],
     lead: '독서경영 운영 경험 공유 및 참여기관 연계',
     summary: '공단의 독서모임 운영방법과 활동 자료를 공유하고, 참여기관 간 연계를 지원합니다.',
@@ -97,10 +101,10 @@ window.PROGRAMS = [
   {
     id: 'culture-art',
     title: '문화예술 협력 프로젝트',
-    category: '문화·예술',
+    category: '공단 고유사업 연계',
     owner: '예술로 협력',
     contact: '02-2103-7782',
-    status: 'soon',
+    status: 'talk',
     targets: ['기업', '기관', '소상공인'],
     lead: '문화예술 활동을 통한 지역 협력 프로젝트',
     summary: '조직·지역의 이야기를 전시, 영상, 공연 등으로 표현하는 공동 활동의 주제를 발굴하고, 외부 공모사업(예술로 등) 참여를 함께 검토합니다.',
@@ -117,7 +121,7 @@ window.PROGRAMS = [
     category: '지역상생',
     owner: '지역상생',
     contact: '02-2103-7782',
-    status: 'soon',
+    status: 'talk',
     targets: ['기업', '기관'],
     lead: '지역 사회공헌 연계 독서·문화활동',
     summary: '임직원과 지역주민이 함께하는 독서행사, 재능나눔, 문화활동을 공동 기획·운영합니다.',
@@ -131,10 +135,10 @@ window.PROGRAMS = [
   {
     id: 'ybti-ip',
     title: 'YBTI 독서성향 콘텐츠 연계',
-    category: '독서·학습',
+    category: '공단 고유사업 연계',
     owner: '독서경영',
     contact: '02-2103-7782',
-    status: 'soon',
+    status: 'talk',
     targets: ['기업', '기관', '소상공인'],
     lead: '공단 독서성향 콘텐츠(YBTI)를 활용한 협력사업 연계',
     summary: '공단이 개발한 독서성향 콘텐츠 YBTI(16개 유형별 도서 추천 등)를 구성원 교육, 독서모임, 공동 행사, 홍보물 등에 활용하는 협력사업을 협의합니다.',
@@ -148,6 +152,7 @@ window.PROGRAMS = [
       { src: 'images/ybti-quest.png',  alt: 'YBTI 퀘스트 화면: 맞아·아니야로 답하며 사다리 길 이동', cap: '문항 응답' },
       { src: 'images/ybti-result.png', alt: 'YBTI 결과 화면: 독서 캐릭터 유형과 독서처방전', cap: '결과 화면' }
     ],
+    links: [{ label: 'YBTI 체험하기', url: 'https://ysdreamtree.github.io/YBTI-Festival/' }],
     tags: ['YBTI', '독서성향', '콘텐츠', '저작권']
   },
   {
@@ -156,15 +161,16 @@ window.PROGRAMS = [
     category: '청렴·윤리경영',
     owner: '청렴·윤리경영',
     contact: '02-2103-7782',
-    status: 'soon',
+    status: 'talk',
     targets: ['기업', '기관', '소상공인'],
     lead: '공단 청렴·윤리경영 콘텐츠를 활용한 공동 협력',
     summary: '공단이 운영하는 청렴·윤리경영 콘텐츠(직원 참여형 웹 게임 ‘가치 UP! 위험 DOWN’, 실무 웹진 ‘일의 기준’, 월간 콘텐츠 ‘윤리·인권에 머물다’)를 협력기관과 공유하고, 공동 캠페인·교육으로 연계합니다.',
-    who: '직원 청렴·윤리경영 교육 수요가 있는 기업·기관, 공단 거래·협력업체',
+    who: '직원 청렴·윤리경영 교육 수요가 있는 기업, 유관기관·단체',
     support: '콘텐츠 공유 · 직원 교육·캠페인 연계 · 공동 콘텐츠 기획',
     period: '협의 후 결정',
     how: '관심 사업 등록 또는 협력 제안으로 희망 내용을 접수',
     notes: '콘텐츠 이용 범위와 일정은 협의 후 결정합니다.',
+    links: [{ label: '청렴 웹 게임 ‘가치 UP! 위험 DOWN’ 체험하기', url: 'https://integrity-hero-rain-1023.jsh0501.chatgpt.site/' }],
     images: [
       { src: 'images/integrity-game.jpg', alt: '직원 참여형 웹 게임 가치 UP 위험 DOWN 홍보 이미지', cap: '웹 게임' },
       { src: 'images/integrity-webzine.jpg', alt: '상황으로 배우는 실무 웹진 일의 기준 홍보 이미지', cap: '실무 웹진' },
@@ -217,4 +223,8 @@ window.PROPOSALS = [
   { type: 'resource', org: '△△ 기업', kind: '기업',     title: '임직원 재능나눔 연계 제안', body: '…', date: '2026-11' }
 ];
 */
-window.PROPOSALS = [];
+window.PROPOSALS = [
+  // example: true 는 '예시' 표시가 붙고 협력 의사 전달 버튼이 나타나지 않습니다. 실제 제안이 생기면 예시를 지우세요.
+  { type: 'together', org: '○○ 상인회', kind: '소상공인', title: '상인 대상 독서 교육 공동 추진 제안', body: '상인회 회원을 대상으로 한 독서 교육을 공단과 함께 기획하고, 상인회 사무실을 교육 공간으로 제공하고자 합니다.', example: true },
+  { type: 'resource', org: '△△ 기업', kind: '기업', title: '임직원 재능나눔 연계 제안', body: '임직원이 보유한 재능을 활용해 지역주민 대상 강좌를 운영하고자 하며, 공단 시설의 활용을 협의하고자 합니다.', example: true }
+];
