@@ -1,0 +1,482 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>지역상생 협력 마당 | 용산구시설관리공단</title>
+<meta name="description" content="용산구시설관리공단의 협력사업을 한곳에 모았어요. 기업·기관·소상공인이 사업을 찾고, 서로 제안할 수 있어요.">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/galmuri@latest/dist/galmuri.css">
+<style>
+:root{
+  --ink:#2a2540; --paper:#fff6e0; --card:#fffdf6; --dot:#ecdcb2;
+  --yellow:#ffd75e; --coral:#ff8a6b; --mint:#9be3c1; --sky:#9fd3ff; --pink:#ffb7c5;
+  --muted:#5d5873;
+  --pixel:'Galmuri11','DungGeunMo','Noto Sans KR','Apple SD Gothic Neo','Malgun Gothic',sans-serif;
+  --body:'Pretendard','Noto Sans KR','Apple SD Gothic Neo','Malgun Gothic',sans-serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:12px}
+body{margin:0;background:var(--paper);background-image:radial-gradient(var(--dot) 1.6px,transparent 1.6px);background-size:18px 18px;color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.7;word-break:keep-all}
+a{color:inherit}
+button,input,select,textarea{font:inherit;color:inherit}
+[hidden]{display:none!important}
+.wrap{max-width:1080px;margin:0 auto;padding:0 20px}
+.pix{display:block;image-rendering:pixelated}
+:focus-visible{outline:3px solid var(--coral);outline-offset:3px}
+.skip{position:absolute;left:12px;top:-60px;background:var(--ink);color:#fff;padding:10px 14px;z-index:50}
+.skip:focus{top:8px}
+
+/* 공통 도트 느낌: 두꺼운 테두리 + 딱딱한 그림자 */
+.box{background:var(--card);border:3px solid var(--ink);box-shadow:5px 5px 0 var(--ink)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:46px;padding:9px 18px;background:var(--yellow);border:3px solid var(--ink);box-shadow:4px 4px 0 var(--ink);font-family:var(--pixel);font-weight:700;font-size:15px;cursor:pointer;text-decoration:none;transition:transform .08s,box-shadow .08s}
+.btn:hover{transform:translate(-1px,-1px);box-shadow:5px 5px 0 var(--ink)}
+.btn:active{transform:translate(3px,3px);box-shadow:1px 1px 0 var(--ink)}
+.btn.alt{background:var(--card)}
+.btn.coral{background:var(--coral)}
+.btn.mint{background:var(--mint)}
+.btn.small{min-height:40px;padding:6px 13px;font-size:14px}
+
+/* 헤더 */
+header{background:var(--card);border-bottom:3px solid var(--ink)}
+.head{display:flex;align-items:center;justify-content:space-between;gap:12px 20px;flex-wrap:wrap;padding-top:12px;padding-bottom:12px}
+.logo{display:flex;align-items:center;gap:12px;text-decoration:none}
+.logo-icon{background:var(--yellow);border:3px solid var(--ink);padding:5px}
+.logo small{display:block;font-size:13px;color:var(--muted);line-height:1.3}
+.logo strong{display:block;font-family:var(--pixel);font-size:20px;line-height:1.3}
+nav{display:flex;gap:4px;flex-wrap:wrap}
+nav a{font-family:var(--pixel);font-weight:700;font-size:15px;text-decoration:none;padding:9px 12px;border:3px solid transparent}
+nav a:hover{border-color:var(--ink);background:var(--yellow)}
+
+/* 첫 화면 */
+.hero{padding:40px 0 34px}
+.hero-grid{display:grid;grid-template-columns:1.15fr 1fr;gap:34px;align-items:center}
+.eyebrow{display:inline-block;font-family:var(--pixel);font-weight:700;font-size:14px;background:var(--ink);color:var(--yellow);padding:3px 10px;margin:0 0 14px}
+h1{font-family:var(--pixel);font-size:38px;line-height:1.4;margin:0 0 16px;letter-spacing:-.02em}
+h1 mark{background:var(--yellow);padding:0 6px}
+.lead{font-size:18px;margin:0 0 24px;color:#3b3652}
+.cta{display:flex;gap:14px;flex-wrap:wrap}
+.swap{padding:22px;display:grid;grid-template-columns:1fr auto 1fr;gap:12px;align-items:center;text-align:center}
+.tile{border:3px solid var(--ink);padding:16px 8px;font-family:var(--pixel);font-weight:700;font-size:15px}
+.tile .pix{margin:0 auto 8px}
+.tile span{display:block;font-family:var(--body);font-weight:400;font-size:13px;color:#3b3652;margin-top:3px}
+.tile.need{background:var(--coral)}
+.tile.share{background:var(--mint)}
+.arrows{display:grid;gap:8px}
+.swap-note{grid-column:1/-1;margin:6px 0 0;font-size:14px;color:var(--muted)}
+
+/* 섹션 */
+section{padding:34px 0}
+.sec-head{display:flex;justify-content:space-between;align-items:end;gap:12px 24px;flex-wrap:wrap;margin-bottom:18px}
+h2{font-family:var(--pixel);font-size:28px;line-height:1.4;margin:0;letter-spacing:-.02em}
+.sec-head p{margin:0;color:var(--muted);font-size:15px}
+h3{font-family:var(--pixel);font-size:20px;line-height:1.45;margin:0}
+
+/* 필터 */
+.filters{padding:16px 18px;margin-bottom:22px;display:grid;gap:12px}
+.search{display:flex;align-items:center;gap:10px;background:#fff;border:3px solid var(--ink);padding:0 12px;min-height:48px}
+.search input{border:0;outline:0;flex:1;min-width:0;font-size:16px;background:transparent;min-height:42px}
+.search:focus-within{box-shadow:0 0 0 3px var(--coral)}
+.frow{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.flabel{font-family:var(--pixel);font-weight:700;font-size:14px;min-width:46px}
+.chip{border:3px solid var(--ink);background:#fff;padding:3px 12px;min-height:38px;font-size:15px;cursor:pointer}
+.chip:hover{background:var(--yellow)}
+.chip.on{background:var(--ink);color:var(--yellow)}
+.count{font-family:var(--pixel);font-weight:700;font-size:15px;margin:0 0 14px}
+
+/* 사업 카드 */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:24px}
+.card{display:flex;flex-direction:column;background:var(--card);border:3px solid var(--ink);box-shadow:5px 5px 0 var(--ink)}
+.card-top{display:flex;align-items:center;justify-content:space-between;background:var(--c,var(--yellow));border-bottom:3px solid var(--ink);padding:10px 14px}
+.badge{font-family:var(--pixel);font-weight:700;font-size:13px;border:3px solid var(--ink);padding:1px 9px;background:#fff}
+.badge.ok{background:var(--mint)}
+.badge.soon{background:var(--yellow)}
+.badge.always{background:var(--sky)}
+.badge.closed{background:#ddd;color:#555}
+.card-body{padding:16px 16px 8px;flex:1}
+.cat{font-size:14px;color:var(--muted);margin:0 0 4px}
+.card h3{margin-bottom:8px}
+.card p{margin:0 0 10px}
+.targets{display:flex;gap:6px;flex-wrap:wrap;margin:0 0 10px}
+.t{font-size:13px;border:2px solid var(--ink);padding:0 8px;background:#fff}
+.line{font-size:14.5px;color:#3b3652}
+.line b{font-family:var(--pixel);margin-right:6px}
+.card-foot{display:flex;gap:10px;padding:10px 16px 16px}
+.card-foot .btn{flex:1}
+.empty{border:3px dashed var(--ink);background:var(--card);text-align:center;padding:38px 18px;grid-column:1/-1}
+.empty p{margin:6px 0 0;color:var(--muted)}
+
+/* 제안 */
+.prop-cta{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-bottom:26px}
+.prop-btn{text-align:left;cursor:pointer;padding:18px;display:flex;gap:14px;align-items:flex-start;font:inherit;transition:transform .08s,box-shadow .08s}
+.prop-btn:hover{transform:translate(-1px,-1px);box-shadow:6px 6px 0 var(--ink)}
+.prop-btn:active{transform:translate(3px,3px);box-shadow:2px 2px 0 var(--ink)}
+.prop-btn b{display:block;font-family:var(--pixel);font-size:18px;margin-bottom:3px}
+.prop-btn span{font-size:14.5px;color:#3b3652}
+.prop-btn .ic{border:3px solid var(--ink);padding:6px;background:#fff;flex-shrink:0}
+.board-tools{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}
+.pcard{padding:16px}
+.pcard .tag{display:inline-block;font-family:var(--pixel);font-weight:700;font-size:13px;border:3px solid var(--ink);padding:1px 9px;margin-bottom:8px}
+.pcard .tag.need{background:var(--coral)}
+.pcard .tag.share{background:var(--mint)}
+.pcard p{margin:0 0 8px}
+.pcard small{display:block;color:var(--muted);font-size:13.5px;margin-bottom:10px}
+
+/* 이용 방법 */
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.step{padding:18px}
+.step .n{display:inline-block;font-family:var(--pixel);font-weight:700;background:var(--ink);color:var(--yellow);padding:0 10px;margin-bottom:8px}
+.step p{margin:4px 0 0;font-size:15px;color:#3b3652}
+.faq details{background:var(--card);border:3px solid var(--ink);margin-bottom:12px}
+.faq summary{cursor:pointer;font-family:var(--pixel);font-weight:700;padding:13px 16px;list-style:none;display:flex;justify-content:space-between;gap:10px}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:'+';font-size:20px;line-height:1}
+.faq details[open] summary::after{content:'−'}
+.faq details[open] summary{background:var(--yellow);border-bottom:3px solid var(--ink)}
+.faq details p{margin:0;padding:13px 16px;font-size:15px}
+footer{background:var(--ink);color:#e9e5f7;padding:26px 0;margin-top:20px}
+footer .wrap{display:flex;gap:10px 24px;justify-content:space-between;flex-wrap:wrap;align-items:center}
+footer strong{font-family:var(--pixel);color:var(--yellow)}
+footer small{font-size:13.5px}
+
+/* 팝업 */
+dialog{width:660px;max-width:calc(100vw - 24px);max-height:92vh;padding:0;border:3px solid var(--ink);box-shadow:8px 8px 0 var(--ink);background:var(--card);color:var(--ink)}
+dialog::backdrop{background:rgba(42,37,64,.6)}
+.dtop{position:sticky;top:0;display:flex;justify-content:space-between;align-items:center;gap:10px;padding:10px 14px;background:var(--yellow);border-bottom:3px solid var(--ink);font-family:var(--pixel);font-weight:700;z-index:1}
+.dclose{min-width:44px;min-height:44px;border:3px solid var(--ink);background:#fff;font-size:20px;cursor:pointer;font-family:var(--pixel)}
+.dbody{padding:20px 20px 24px}
+.dbody h2{font-size:24px;margin-bottom:10px}
+dl{margin:16px 0}
+dl div{display:grid;grid-template-columns:90px 1fr;gap:10px;padding:10px 0;border-bottom:2px dotted #b9ad8a}
+dt{font-family:var(--pixel);font-weight:700;font-size:14px}
+dd{margin:0;font-size:15px}
+.fld{display:block;margin:0 0 16px;font-family:var(--pixel);font-weight:700;font-size:15px}
+.fld input,.fld select,.fld textarea{display:block;width:100%;margin-top:6px;padding:10px 12px;border:3px solid var(--ink);background:#fff;font-family:var(--body);font-weight:400;font-size:16px;min-height:46px;border-radius:0}
+.fld textarea{min-height:120px;resize:vertical}
+.fld small{display:block;font-family:var(--body);font-weight:400;font-size:13.5px;color:var(--muted);margin-top:5px}
+.check{display:flex;gap:10px;align-items:flex-start;margin:0 0 16px;font-size:15px}
+.check input{width:22px;height:22px;margin-top:3px;accent-color:var(--ink);flex-shrink:0}
+.note{background:#fff3c4;border:3px solid var(--ink);padding:10px 14px;font-size:14.5px;margin:0 0 16px}
+.err{color:#b3261e;font-weight:700;margin:0 0 12px}
+.row{display:flex;gap:12px;flex-wrap:wrap;margin-top:10px}
+pre{white-space:pre-wrap;word-break:break-word;background:#fff;border:3px solid var(--ink);padding:14px;font-family:var(--body);font-size:15px;margin:12px 0}
+.toast{position:fixed;left:50%;bottom:22px;transform:translateX(-50%);background:var(--ink);color:var(--yellow);font-family:var(--pixel);padding:12px 20px;border:3px solid var(--yellow);z-index:100;max-width:92vw}
+
+@media(max-width:860px){
+  .hero-grid{grid-template-columns:1fr}
+  .prop-cta,.steps{grid-template-columns:1fr}
+}
+@media(max-width:560px){
+  h1{font-size:29px}h2{font-size:24px}.lead{font-size:16px}
+  .hero{padding:28px 0 24px}
+  .logo strong{font-size:18px}
+  .grid{grid-template-columns:1fr}
+  .swap{grid-template-columns:1fr;}
+  .arrows{grid-template-columns:1fr 1fr;justify-items:center}
+  dl div{grid-template-columns:1fr;gap:2px}
+  .cta .btn{flex:1}
+}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.btn,.prop-btn{transition:none}}
+</style>
+</head>
+<body>
+<a class="skip" href="#programs">본문으로 바로가기</a>
+
+<header>
+  <div class="wrap head">
+    <a class="logo" href="#top" aria-label="지역상생 협력 마당 처음으로">
+      <span class="logo-icon" id="logo-icon"></span>
+      <span><small>용산구시설관리공단</small><strong>지역상생 협력 마당</strong></span>
+    </a>
+    <nav aria-label="주 메뉴">
+      <a href="#programs">사업 둘러보기</a>
+      <a href="#proposals">협력 제안</a>
+      <a href="#guide">이용 안내</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <div class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <p class="eyebrow">기업 · 기관 · 소상공인 모두 환영</p>
+        <h1>함께할 일, <mark>여기서 찾고</mark><br>먼저 제안해요</h1>
+        <p class="lead">공단의 협력사업을 한곳에 모았어요. 마음에 드는 사업을 찾아 함께하고, 하고 싶은 협력이 있다면 먼저 제안해 주세요.</p>
+        <div class="cta">
+          <a class="btn" href="#programs">사업 둘러보기</a>
+          <button class="btn alt" type="button" data-open="form" data-type="together">협력 제안하기</button>
+        </div>
+      </div>
+      <div class="box swap" aria-hidden="true">
+        <div class="tile need"><div id="hero-need"></div>우리 사업장<span>하고 싶은 일</span></div>
+        <div class="arrows"><div id="hero-ar"></div><div id="hero-al"></div></div>
+        <div class="tile share"><div id="hero-share"></div>공단 · 이웃<span>함께 쓸 자원</span></div>
+        <p class="swap-note">각자 가진 것을 서로 주고받으며 함께 커가요.</p>
+      </div>
+    </div>
+  </div>
+
+  <section id="programs">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2>사업 둘러보기</h2>
+        <p>원하는 분류와 대상을 고르면 바로 걸러져요.</p>
+      </div>
+      <div class="box filters">
+        <label class="search"><span aria-hidden="true">🔍</span><input id="q" type="search" placeholder="사업 이름, 키워드로 찾기" aria-label="사업 검색" autocomplete="off"></label>
+        <div class="frow" id="f-cat" role="group" aria-label="분류"></div>
+        <div class="frow" id="f-target" role="group" aria-label="대상"></div>
+        <div class="frow" id="f-status" role="group" aria-label="진행 상태"></div>
+      </div>
+      <p class="count" id="count" aria-live="polite"></p>
+      <div class="grid" id="list"></div>
+    </div>
+  </section>
+
+  <section id="proposals">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2>협력 제안</h2>
+        <p>사업에 없어도 괜찮아요. 하고 싶은 걸 먼저 말해 주세요.</p>
+      </div>
+      <div class="prop-cta">
+        <button type="button" class="box prop-btn" data-open="form" data-type="together"><span class="ic" id="ic-need"></span><span><b>같이 하고 싶은 일이 있어요</b><span>교육, 독서, 문화활동 등 함께 해보고 싶은 협력을 제안해 주세요.</span></span></button>
+        <button type="button" class="box prop-btn" data-open="form" data-type="resource"><span class="ic" id="ic-share"></span><span><b>함께 쓸 수 있는 게 있어요</b><span>공간, 인력, 콘텐츠, 재능을 서로 나누며 함께 쓸 방법을 제안해 주세요.</span></span></button>
+        <button type="button" class="box prop-btn" data-open="form" data-type="recommend"><span class="ic" id="ic-rec"></span><span><b>이곳과 손잡으면 좋겠어요</b><span>함께하면 좋을 기업·기관·소상공인을 추천해 주세요.</span></span></button>
+      </div>
+      <h3 style="margin-bottom:12px">공개된 제안</h3>
+      <div class="board-tools" id="f-ptype" role="group" aria-label="제안 종류"></div>
+      <div class="grid" id="board"></div>
+    </div>
+  </section>
+
+  <section id="guide">
+    <div class="wrap">
+      <div class="sec-head"><h2>이용 안내</h2></div>
+      <div class="steps">
+        <div class="box step"><span class="n">1</span><h3>찾고 제안해요</h3><p>사업을 둘러보고 신청하거나, 하고 싶은 협력을 직접 제안해요.</p></div>
+        <div class="box step"><span class="n">2</span><h3>총괄이 확인해요</h3><p>내용을 살펴보고 알맞은 사업과 담당자를 찾아요.</p></div>
+        <div class="box step"><span class="n">3</span><h3>담당자가 연락해요</h3><p>협의를 거쳐 함께 실행하고 결과를 나눠요.</p></div>
+      </div>
+      <div class="faq" style="margin-top:24px">
+        <details open><summary>개인도 신청할 수 있나요?</summary><p>이 마당은 지역상생을 위한 곳이라 기업, 기관, 소상공인(사업장) 대상이에요.</p></details>
+        <details><summary>‘준비 중’인 사업도 신청되나요?</summary><p>아직 접수 전이에요. 관심이 있다면 협력 제안으로 미리 알려주세요. 접수가 시작되면 이 페이지에서 안내해요.</p></details>
+        <details><summary>제안 내용이 바로 공개되나요?</summary><p>아니요. 제안은 담당자가 먼저 확인하고, 공개에 동의한 요약만 총괄 승인 후 올려요. 연락처는 공개하지 않아요.</p></details>
+        <details><summary>입력한 내용은 어디에 저장되나요?</summary><p>이 페이지에는 저장되지 않아요. 작성한 내용을 이메일로 보내거나 복사해서 담당자에게 전달하는 방식이에요. 개인 연락처보다 대표번호나 공용 메일을 적어 주세요.</p></details>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap"><strong>용산구시설관리공단 · 지역상생 협력 마당</strong><small>지원 범위와 일정은 사업별 확인 후 확정돼요.</small></div>
+</footer>
+
+<dialog id="dlg" aria-labelledby="dlg-title">
+  <div class="dtop"><span id="dlg-title"></span><button type="button" class="dclose" id="dlg-x" aria-label="닫기">✕</button></div>
+  <div class="dbody" id="dlg-body"></div>
+</dialog>
+
+<script src="../programs.js"></script>
+<script>
+'use strict';
+const SITE=window.SITE||{}, PROGRAMS=window.PROGRAMS||[], PROPOSALS=window.PROPOSALS||[], CATS=window.CATEGORIES||{};
+const STATUS={open:['모집 중','ok'],soon:['준비 중','soon'],always:['상시','always'],closed:['마감','closed']};
+const TYPE={together:'같이 하고 싶은 일이 있어요',resource:'함께 쓸 수 있는 게 있어요',recommend:'이곳과 손잡으면 좋겠어요'};
+const esc=s=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const $=s=>document.querySelector(s);
+const uniq=a=>[...new Set(a)];
+
+/* ---------- 클릭 기록 (성과 집계용, 개인정보 없음) ---------- */
+const AN=SITE.analytics||{};
+if(AN.goatcounter){const s=document.createElement('script');s.async=true;s.dataset.goatcounter=AN.goatcounter;s.src='https://gc.zgo.at/count.js';document.head.appendChild(s)}
+function track(ev,d){
+  d=d||{};
+  try{
+    const A=SITE.analytics||{};
+    if(A.goatcounter&&window.goatcounter&&window.goatcounter.count)
+      window.goatcounter.count({event:true,title:ev,path:'event/'+ev+(d.program?'/'+d.program:'')+(d.type?'/'+d.type:'')});
+    if(A.sheetUrl){
+      const body=JSON.stringify({event:ev,program:d.program||'',type:d.type||'',page:location.pathname.split('/').pop()||'index'});
+      if(navigator.sendBeacon)navigator.sendBeacon(A.sheetUrl,new Blob([body],{type:'text/plain'}));
+      else fetch(A.sheetUrl,{method:'POST',mode:'no-cors',body:body,keepalive:true});
+    }
+  }catch(e){}
+}
+
+/* ---------- 도트 아이콘 ---------- */
+const ICONS={
+  book:['.####..####.','#....##....#','#.##.##.##.#','#....##....#','#.##.##.##.#','#....##....#','.####..####.'],
+  star:['....#....','....#....','...###...','#########','.#######.','..#####..','.###.###.','.##...##.','#.......#'],
+  heart:['.##...##.','#########','#########','#########','.#######.','..#####..','...###...','....#....'],
+  house:['...##...','..####..','.######.','########','#..##..#','#..##..#','#.####.#','########'],
+  arrowR:['....#..','.....#.','#######','.....#.','....#..'],
+  arrowL:['..#....','.#.....','#######','.#.....','..#....']
+};
+function pix(name,w){
+  const b=ICONS[name]||ICONS.house;let d='';
+  b.forEach((row,y)=>[...row].forEach((ch,x)=>{if(ch==='#')d+='M'+x+' '+y+'h1v1h-1z'}));
+  const h=Math.round(w*b.length/b[0].length);
+  return '<svg class="pix" width="'+w+'" height="'+h+'" viewBox="0 0 '+b[0].length+' '+b.length+'" shape-rendering="crispEdges" aria-hidden="true"><path d="'+d+'" fill="#2a2540"/></svg>';
+}
+function catInfo(c){return CATS[c]||{color:'#ffd75e',icon:'house'}}
+
+/* ---------- 필터 상태 ---------- */
+const st={q:'',cat:'전체',target:'전체',status:'전체',ptype:'all'};
+function chipHtml(group,pairs,cur){
+  return pairs.map(p=>'<button type="button" class="chip'+(p[0]===cur?' on':'')+'" data-f="'+group+'" data-v="'+esc(p[0])+'" aria-pressed="'+(p[0]===cur)+'">'+esc(p[1])+'</button>').join('');
+}
+function renderFilters(){
+  const cats=['전체',...uniq(PROGRAMS.map(p=>p.category))];
+  const tg=['전체',...uniq(PROGRAMS.flatMap(p=>p.targets||[]))];
+  const ss=['전체',...uniq(PROGRAMS.map(p=>p.status||'open'))];
+  $('#f-cat').innerHTML='<span class="flabel">분류</span>'+chipHtml('cat',cats.map(v=>[v,v]),st.cat);
+  $('#f-target').innerHTML='<span class="flabel">대상</span>'+chipHtml('target',tg.map(v=>[v,v]),st.target);
+  $('#f-status').innerHTML='<span class="flabel">상태</span>'+chipHtml('status',ss.map(v=>[v,v==='전체'?'전체':(STATUS[v]||[v])[0]]),st.status);
+  $('#f-ptype').innerHTML=chipHtml('ptype',[['all','전체'],['together','같이 하고 싶은 일'],['resource','함께 쓸 자원']],st.ptype);
+}
+function match(p){
+  const hay=[p.title,p.summary,p.support,p.owner,p.category,...(p.targets||[]),...(p.tags||[])].join(' ').toLowerCase();
+  return (!st.q||hay.includes(st.q.toLowerCase()))
+    &&(st.cat==='전체'||p.category===st.cat)
+    &&(st.target==='전체'||(p.targets||[]).includes(st.target))
+    &&(st.status==='전체'||(p.status||'open')===st.status);
+}
+
+/* ---------- 사업 카드 ---------- */
+function cardHtml(p){
+  const ci=catInfo(p.category),s=STATUS[p.status||'open']||['',''];
+  return '<article class="card" style="--c:'+esc(ci.color)+'">'+
+    '<div class="card-top">'+pix(ci.icon,34)+'<span class="badge '+s[1]+'">'+esc(s[0])+'</span></div>'+
+    '<div class="card-body"><p class="cat">'+esc(p.category)+(p.owner?' · '+esc(p.owner):'')+'</p>'+
+    '<h3>'+esc(p.title)+'</h3><p>'+esc(p.summary)+'</p>'+
+    '<div class="targets">'+(p.targets||[]).map(t=>'<span class="t">'+esc(t)+'</span>').join('')+'</div>'+
+    (p.support?'<p class="line"><b>지원</b>'+esc(p.support)+'</p>':'')+
+    (p.period?'<p class="line"><b>기간</b>'+esc(p.period)+'</p>':'')+'</div>'+
+    '<div class="card-foot"><button type="button" class="btn alt small" data-open="detail" data-id="'+esc(p.id)+'">자세히</button>'+
+    '<button type="button" class="btn small" data-open="form" data-type="together" data-program="'+esc(p.id)+'">신청·제안</button></div></article>';
+}
+function renderList(){
+  const rows=PROGRAMS.filter(match);
+  $('#count').textContent='사업 '+rows.length+'개'+(rows.length!==PROGRAMS.length?' (전체 '+PROGRAMS.length+'개 중)':'');
+  $('#list').innerHTML=rows.length?rows.map(cardHtml).join(''):
+    '<div class="empty"><h3>찾는 사업이 없어요</h3><p>조건을 바꿔보거나, 아래 서로 제안에서 먼저 말해 주세요.</p></div>';
+}
+function renderBoard(){
+  const rows=PROPOSALS.filter(x=>st.ptype==='all'||x.type===st.ptype);
+  $('#board').innerHTML=rows.length?rows.map((x,i)=>
+    '<article class="box pcard"><span class="tag '+(x.type==='resource'?'share':'need')+'">'+esc(TYPE[x.type]||'')+'</span>'+
+    '<h3>'+esc(x.title)+'</h3><small>'+esc(x.org)+(x.kind?' · '+esc(x.kind):'')+(x.date?' · '+esc(x.date):'')+'</small>'+
+    '<p>'+esc(x.body)+'</p><button type="button" class="btn small '+(x.type==='resource'?'coral':'mint')+'" data-open="form" data-type="together" data-ref="'+i+'">저희도 함께해요</button></article>'
+  ).join(''):
+    '<div class="empty"><h3>아직 공개된 제안이 없어요</h3><p>첫 제안을 기다리고 있어요. 위에서 먼저 말을 걸어 주세요.</p></div>';
+}
+
+/* ---------- 팝업 ---------- */
+const dlg=$('#dlg');
+function openDlg(title,html){$('#dlg-title').textContent=title;$('#dlg-body').innerHTML=html;if(!dlg.open)dlg.showModal();dlg.scrollTop=0}
+function closeDlg(){if(dlg.open)dlg.close()}
+$('#dlg-x').onclick=closeDlg;
+dlg.addEventListener('click',e=>{if(e.target===dlg)closeDlg()});
+
+function showDetail(id){
+  const p=PROGRAMS.find(x=>x.id===id);if(!p)return;
+  track('view_detail',{program:id});
+  const s=STATUS[p.status||'open']||['',''];
+  const rows=[['대상',(p.targets||[]).join(' · ')],['지원 내용',p.support],['기간',p.period],['신청 방법',p.how],['유의사항',p.notes],['담당',p.owner]].filter(r=>r[1]);
+  openDlg('사업 자세히 보기',
+    '<span class="badge '+s[1]+'">'+esc(s[0])+'</span> <span class="cat">'+esc(p.category)+'</span>'+
+    '<h2>'+esc(p.title)+'</h2><p>'+esc(p.summary)+'</p>'+
+    '<dl>'+rows.map(r=>'<div><dt>'+esc(r[0])+'</dt><dd>'+esc(r[1])+'</dd></div>').join('')+'</dl>'+
+    '<div class="row"><button type="button" class="btn" data-open="form" data-type="together" data-program="'+esc(p.id)+'">신청·제안하기</button>'+
+    '<button type="button" class="btn alt" data-close="1">닫기</button></div>');
+}
+
+function showForm(o){
+  const ref=o.ref!=null?PROPOSALS[o.ref]:null;
+  track('start_form',{type:o.type,program:o.program});
+  const opts=PROGRAMS.map(p=>'<option value="'+esc(p.id)+'"'+(p.id===o.program?' selected':'')+'>'+esc(p.title)+'</option>').join('');
+  openDlg('협력 제안하기',
+    '<h2>협력 제안하기</h2>'+
+    (ref?'<p class="note">‘'+esc(ref.title)+'’ ('+esc(ref.org)+') 제안에 연결을 제안해요.</p>':'')+
+    '<form id="f" novalidate>'+
+    '<label class="fld">어떤 제안인가요?<select name="type">'+Object.keys(TYPE).map(k=>'<option value="'+k+'"'+(k===o.type?' selected':'')+'>'+TYPE[k]+'</option>').join('')+'</select></label>'+
+    '<label class="fld">관련 사업<select name="program"><option value="">사업 지정 없음</option>'+opts+'</select></label>'+
+    '<label class="fld"><span id="l-name">우리 기관·업체 이름</span><input name="name" autocomplete="organization" maxlength="60"></label>'+
+    '<label class="fld">구분<select name="kind"><option>기업</option><option>기관</option><option>소상공인</option><option>기타</option></select></label>'+
+    '<label class="fld"><span id="l-body">제안 내용</span><textarea name="body" maxlength="1000" placeholder="함께 하고 싶은 일이나 함께 쓸 수 있는 것을 편하게 적어 주세요."></textarea></label>'+
+    '<label class="fld" id="w-contact">회신 연락처<input name="contact" maxlength="80" placeholder="대표번호 또는 공용 메일"><small>개인 번호보다 대표번호·공용 메일을 권장해요.</small></label>'+
+    '<label class="check"><input type="checkbox" name="pub"><span>내용 요약을 공개해도 좋아요. (연락처는 공개하지 않아요)</span></label>'+
+    '<p class="err" id="err" role="alert" hidden></p>'+
+    '<div class="row"><button type="submit" class="btn">다음: 내용 확인</button><button type="button" class="btn alt" data-close="1">닫기</button></div></form>');
+  const f=$('#f'),sync=()=>{
+    const rec=f.type.value==='recommend';
+    $('#l-name').textContent=rec?'추천할 곳 이름':'우리 기관·업체 이름';
+    $('#l-body').textContent=rec?'추천 이유와 공식 홈페이지':'제안 내용';
+    $('#w-contact').hidden=rec;
+  };
+  f.type.onchange=sync;sync();
+  f.onsubmit=e=>{
+    e.preventDefault();
+    const rec=f.type.value==='recommend',err=$('#err');
+    const miss=!f.name.value.trim()?'이름을 적어 주세요.':!f.body.value.trim()?'제안 내용을 적어 주세요.':(!rec&&!f.contact.value.trim())?'회신 연락처를 적어 주세요.':'';
+    if(miss){err.textContent=miss;err.hidden=false;return}
+    const prog=PROGRAMS.find(p=>p.id===f.program.value);
+    const text=['[지역상생 협력 제안] '+TYPE[f.type.value],
+      '- 관련 사업: '+(prog?prog.title:'사업 지정 없음'),
+      ref?'- 연결 대상 제안: '+ref.title+' ('+ref.org+')':'',
+      '- '+(rec?'추천할 곳':'기관·업체명')+': '+f.name.value.trim(),
+      rec?'':'- 구분: '+f.kind.value,
+      '- '+(rec?'추천 이유·홈페이지':'제안 내용')+':\n'+f.body.value.trim(),
+      rec?'':'- 회신 연락처: '+f.contact.value.trim(),
+      '- 요약 공개: '+(f.pub.checked?'동의':'비공개')].filter(Boolean).join('\n');
+    const meta={type:f.type.value,program:f.program.value};
+    track('review_form',meta);
+    showResult(text,'[지역상생 협력 제안] '+f.name.value.trim(),meta);
+  };
+}
+
+function showResult(text,subject,meta){
+  meta=meta||{};
+  const mail=SITE.email?'<a class="btn mint" data-ev="email_click" data-type="'+esc(meta.type)+'" data-program="'+esc(meta.program)+'" href="mailto:'+esc(SITE.email)+'?subject='+encodeURIComponent(subject)+'&body='+encodeURIComponent(text)+'">이메일로 보내기</a>':'';
+  openDlg('내용 확인',
+    '<h2>이렇게 전달돼요</h2>'+
+    '<p class="note">이 페이지에는 저장되지 않아요. '+(SITE.email?'아래 버튼으로 이메일을 보내 주세요.':'내용을 복사해서 담당자에게 전달해 주세요.')+'</p>'+
+    '<pre id="out">'+esc(text)+'</pre>'+
+    '<div class="row">'+mail+'<button type="button" class="btn" id="copy">내용 복사</button><button type="button" class="btn alt" data-close="1">닫기</button></div>');
+  $('#copy').onclick=()=>{track('copy_click',meta);copyText(text)};
+}
+function toast(m){const t=document.createElement('div');t.className='toast';t.setAttribute('role','status');t.textContent=m;document.body.appendChild(t);setTimeout(()=>t.remove(),2200)}
+function copyText(text){
+  const ok=()=>toast('복사했어요');
+  const fb=()=>{try{const r=document.createRange();r.selectNodeContents($('#out'));const s=getSelection();s.removeAllRanges();s.addRange(r);document.execCommand('copy');ok()}catch(e){toast('직접 선택해서 복사해 주세요')}};
+  if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(text).then(ok,fb)}else fb();
+}
+
+/* ---------- 이벤트 ---------- */
+document.addEventListener('click',e=>{
+  const ev=e.target.closest('[data-ev]');
+  if(ev)track(ev.dataset.ev,{type:ev.dataset.type,program:ev.dataset.program});
+  const c=e.target.closest('[data-f]');
+  if(c){st[c.dataset.f]=c.dataset.v;renderFilters();renderList();renderBoard();return}
+  if(e.target.closest('[data-close]'))return closeDlg();
+  const o=e.target.closest('[data-open]');
+  if(!o)return;
+  if(o.dataset.open==='detail')showDetail(o.dataset.id);
+  else showForm({type:o.dataset.type||'together',program:o.dataset.program||'',ref:o.dataset.ref!=null?+o.dataset.ref:null});
+});
+$('#q').addEventListener('input',e=>{st.q=e.target.value.trim();renderList()});
+
+/* ---------- 시작 ---------- */
+$('#logo-icon').innerHTML=pix('house',28);
+$('#hero-need').innerHTML=pix('house',44);
+$('#hero-share').innerHTML=pix('heart',44);
+$('#hero-ar').innerHTML=pix('arrowR',34);
+$('#hero-al').innerHTML=pix('arrowL',34);
+$('#ic-need').innerHTML=pix('house',30);
+$('#ic-share').innerHTML=pix('heart',30);
+$('#ic-rec').innerHTML=pix('star',30);
+renderFilters();renderList();renderBoard();
+</script>
+</body>
+</html>
