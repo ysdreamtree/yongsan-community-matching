@@ -202,6 +202,11 @@ pre{white-space:pre-wrap;word-break:break-word;background:#f7f6f1;border:1px sol
 .bar .btn:hover{background:#ff9f8a;border-color:#ff9f8a}
 .linkx{background:none;border:0;color:#cdd3ee;text-decoration:underline;cursor:pointer;min-height:44px;padding:0 10px;font-size:14.5px}
 body.hasbar{padding-bottom:84px}
+.bk{display:grid;grid-template-columns:1.4fr 1fr 110px;gap:8px;margin:0 0 8px}
+.bk input{width:100%;padding:10px 12px;border:2px solid #cfcde0;border-radius:10px;background:#fff;font-size:16px;min-height:46px}
+.bk input:focus{border-color:var(--navy);outline:0;box-shadow:0 0 0 3px #d5dbf3}
+.bkn{font-weight:700;font-size:14px;margin:6px 0 4px}
+@media(max-width:560px){.bk{grid-template-columns:1fr}}
 .fs{border:2px solid #cfcde0;border-radius:10px;padding:6px 14px 10px;margin:0 0 16px;min-width:0}
 .fs legend{font-weight:700;font-size:15px;padding:0 6px}
 .chk{display:flex;gap:10px;align-items:center;min-height:44px;font-size:15.5px;cursor:pointer}
@@ -518,6 +523,29 @@ function buildText(d,progs){
   ].filter(Boolean).join('\n');
 }
 
+const BOOKP=PROGRAMS.find(p=>p.book)||null;
+function bookFields(){
+  if(!BOOKP)return '';
+  const b=BOOKP.book,n=b.max||3;let rows='';
+  for(let i=1;i<=n;i++)rows+='<div class="bkn">'+i+'번째 도서'+(i===1?' (필수)':' (선택)')+'</div><div class="bk"><input name="bt'+i+'" maxlength="80" placeholder="도서명" aria-label="'+i+'번째 도서명"><input name="ba'+i+'" maxlength="60" placeholder="저자·출판사 (선택)" aria-label="'+i+'번째 저자·출판사"><input name="bp'+i+'" inputmode="numeric" maxlength="7" placeholder="정가(원)" aria-label="'+i+'번째 정가"></div>';
+  return '<fieldset class="fs" id="w-book" hidden><legend>희망 도서 (사업장당 최대 '+n+'권, 권당 '+Number(b.price||0).toLocaleString()+'원 이내)</legend>'+rows+
+    '<label class="fld" style="margin-top:10px">업무·생활 고민 (기대하는 인사이트, 선택)<textarea name="bconcern" maxlength="500" placeholder="예: 신입 직원과 소통하는 방법이 고민입니다." style="min-height:90px"></textarea></label></fieldset>';
+}
+function readBooks(f){
+  if(!BOOKP)return{text:'',err:''};
+  const b=BOOKP.book,n=b.max||3,max=Number(b.price)||0,list=[];
+  for(let i=1;i<=n;i++){
+    const t=f['bt'+i].value.trim(),a=f['ba'+i].value.trim(),pr=f['bp'+i].value.replace(/[^0-9]/g,'');
+    if(!t&&!a&&!pr)continue;
+    if(!t)return{text:'',err:i+'번째 도서명을 입력해 주세요.'};
+    if(!pr)return{text:'',err:i+'번째 도서의 정가를 입력해 주세요.'};
+    if(max&&Number(pr)>max)return{text:'',err:i+'번째 도서 정가가 권당 한도('+max.toLocaleString()+'원)를 넘습니다.'};
+    list.push(i+'. '+t+(a?' / '+a:'')+' / 정가 '+Number(pr).toLocaleString()+'원');
+  }
+  if(!list.length)return{text:'',err:'희망 도서를 1권 이상 입력해 주세요.'};
+  const c=f.bconcern.value.trim();
+  return{text:'[희망 도서]\n'+list.join('\n')+(c?'\n[업무·생활 고민] '+c:''),err:''};
+}
 function showForm(o){
   const ref=o.ref!=null?PROPOSALS[o.ref]:null;
   const sel=new Set(o.programs||[]);
@@ -528,7 +556,7 @@ function showForm(o){
     (ref?'<p class="tip">‘'+esc(ref.title)+'’ ('+esc(ref.org)+') 제안에 협력 의사를 전달합니다.</p>':'')+
     '<form id="f" novalidate>'+
     '<label class="fld">접수 유형<select name="type">'+Object.keys(TYPE).map(k=>'<option value="'+k+'"'+(k===o.type?' selected':'')+'>'+TYPE[k]+'</option>').join('')+'</select></label>'+
-    '<fieldset class="fs" id="w-prog"><legend id="l-prog"></legend>'+boxes+'</fieldset>'+
+    '<fieldset class="fs" id="w-prog"><legend id="l-prog"></legend>'+boxes+'</fieldset>'+bookFields()+
     '<label class="fld"><span id="l-name"></span><input name="name" autocomplete="organization" maxlength="60"></label>'+
     '<label class="fld" id="w-kind">구분<select name="kind"><option>기업</option><option>기관</option><option>소상공인</option><option>기타</option></select></label>'+
     '<label class="fld" id="w-person">담당자 성함<input name="person" autocomplete="name" maxlength="40"></label>'+
@@ -547,10 +575,11 @@ function showForm(o){
     $('#l-body').textContent=rec?'추천 사유 및 공식 홈페이지':it?'전달할 내용 (선택)':'제안 내용';
     $('#w-kind').hidden=rec;$('#w-person').hidden=rec;$('#w-contact').hidden=rec;
     $('#w-pub').hidden=!(t==='together'||t==='resource');
+    const wb=$('#w-book');if(wb)wb.hidden=!(it&&BOOKP&&f.querySelector('[name=prog][value="'+BOOKP.id+'"]').checked);
     const wc=$('#w-consent');if(wc)wc.hidden=rec;
     if(!$('#go').disabled)$('#go').textContent=REG?'제출':'다음: 내용 확인';
   };
-  f.type.onchange=sync;sync();
+  f.type.onchange=sync;f.querySelectorAll('[name=prog]').forEach(x=>x.onchange=sync);sync();
   f.onsubmit=async e=>{
     e.preventDefault();
     const t=f.type.value,rec=t==='recommend',it=t==='interest',err=$('#err');
@@ -563,7 +592,11 @@ function showForm(o){
       :(!rec&&!v.contact)?'연락처를 입력해 주세요.'
       :(!it&&!v.body)?'내용을 입력해 주세요.'
       :(REG&&!rec&&!agreed)?'개인정보 수집·이용에 동의해 주세요.':'';
+    let bk={text:'',err:''};
+    const wb=$('#w-book');
+    if(!miss&&wb&&!wb.hidden){bk=readBooks(f);if(bk.err){err.textContent=bk.err;err.hidden=false;return}}
     if(miss){err.textContent=miss;err.hidden=false;return}
+    if(bk.text)v.body=(bk.text+(v.body?'\n[전달 내용] '+v.body:'')).slice(0,1500);
     const data={type:t,programs:progs,org:v.name,kind:rec?'':f.kind.value,person:rec?'':v.person,contact:rec?'':v.contact,body:v.body,
       pub:(t==='together'||t==='resource')&&f.pub.checked,consent:!rec,hp:f.website.value,ref:ref?(ref.title+' ('+ref.org+')'):''};
     if(REG)return sendReg(data,progs);
