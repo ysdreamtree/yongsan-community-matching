@@ -337,7 +337,7 @@ body.hasbar{padding-bottom:84px}
         <details><summary>‘접수 예정’, ‘협의 가능’은 무슨 뜻인가요?</summary><p>‘접수 예정’은 접수 시작일 전의 사업으로, 관심 사업으로 등록하면 접수 시작 시 안내받을 수 있습니다. ‘협의 가능’은 기간 없이 상시 협의하는 사업입니다.</p></details>
         <details><summary>협력은 어떻게 결정되나요?</summary><p>협력 내용과 각 기관의 내부 규정에 따라 협의하여 결정합니다. 규정상 어려운 사항은 제외하고 가능한 범위에서 추진합니다.</p></details>
         <details><summary>접수한 내용은 공개되나요?</summary><p>접수 내용은 담당자가 먼저 확인합니다. 공개에 동의한 요약만 총괄 승인 후 게시하며, 연락처는 공개하지 않습니다.</p></details>
-        <details><summary>입력한 정보는 어떻게 사용되나요?</summary><p>협력사업 안내와 회신을 위해 사용합니다. 개인 연락처보다 대표번호 또는 공용 메일 입력을 권장합니다.</p></details>
+        <details><summary>입력한 정보는 어떻게 사용되나요?</summary><p>협력사업 안내와 회신을 위해 사용합니다. 담당자께서 바로 받으실 수 있는 직통 번호 또는 업무용 메일 입력을 권장합니다. 개인 휴대전화 번호는 꼭 필요한 경우에만 입력해 주세요.</p></details>
       </div>
       <p class="callus" id="callus" hidden></p>
     </div>
@@ -623,7 +623,7 @@ function showForm(o){
     '<label class="fld"><span id="l-name"></span><input name="name" autocomplete="organization" maxlength="60"></label>'+
     '<label class="fld" id="w-kind">구분<select name="kind"><option>기업</option><option>기관</option><option>소상공인</option><option>기타</option></select></label>'+
     '<label class="fld" id="w-person">담당자 성함<input name="person" autocomplete="name" maxlength="40"></label>'+
-    '<label class="fld" id="w-contact">연락처 (전화번호 또는 이메일)<input name="contact" autocomplete="tel" maxlength="100"><small>대표번호 또는 공용 메일 입력을 권장합니다.</small></label>'+
+    '<label class="fld" id="w-contact">연락처 (전화번호 또는 이메일)<input name="contact" autocomplete="tel" maxlength="100"><small>담당자 직통 번호 또는 업무용 메일을 권장합니다. 담당 부서가 이 연락처로 바로 연락드립니다.</small></label>'+
     '<label class="fld"><span id="l-body"></span><textarea name="body" maxlength="1000" placeholder="협력 희망 분야, 추진 방향 등을 자유롭게 입력해 주세요."></textarea></label>'+
     '<label class="check" id="w-pub"><input type="checkbox" name="pub"><span>내용 요약의 공개에 동의합니다. (연락처는 공개하지 않습니다.)</span></label>'+
     (REG?consentBlock():'')+
