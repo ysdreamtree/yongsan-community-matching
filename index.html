@@ -294,7 +294,7 @@ body.hasbar{padding-bottom:84px}
     <div class="wrap">
       <div class="sec-head"><h2>협력사업 안내</h2><p>분류별로 사업을 확인하고, 사업을 선택해 등록·신청할 수 있습니다.</p></div>
       <div class="how2">
-        <div><b>관심 사업 등록</b>참여 의사를 미리 알리는 접수입니다. 담당자가 연락하여 내용과 일정을 안내합니다.</div>
+        <div><b>사업 신청·관심 등록</b>참여를 희망하는 사업을 선택해 신청합니다. 접수 전이거나 협의가 필요한 사업은 참여 의사를 미리 알리는 접수가 되며, 담당자가 연락하여 내용과 일정을 안내합니다.</div>
         <div><b>협력 제안</b>목록에 없는 협력 아이디어를 제안하는 접수입니다. 총괄 검토 후 소관 부서가 연락합니다.</div>
       </div>
       <p class="fnote">협력 가능 여부와 범위는 협력 내용과 각 기관의 내부 규정에 따라 협의하여 결정합니다.</p>
@@ -556,7 +556,7 @@ function showDetail(id){
     (p.images&&p.images.length?'<div class="gal">'+p.images.map(m=>'<figure><img src="'+esc(m.src)+'" alt="'+esc(m.alt||'')+'" loading="lazy"><figcaption>'+esc(m.cap||'')+'</figcaption></figure>').join('')+'</div>':'')+
     '<dl>'+rows.map(r=>'<div><dt>'+esc(r[0])+'</dt><dd>'+esc(r[1])+'</dd></div>').join('')+'</dl>'+
     '<div class="row">'+intBtn(p.id,'')+
-    '<button type="button" class="btn" data-open="form" data-type="interest" data-program="'+esc(p.id)+'">'+(isApply(p)?'신청하기':'관심 사업 등록')+'</button>'+
+    '<button type="button" class="btn" data-open="form" data-type="interest" data-program="'+esc(p.id)+'">신청하기</button>'+
     '<button type="button" class="btn line" data-close="1">닫기</button></div>');
 }
 
