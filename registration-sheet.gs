@@ -35,7 +35,9 @@ var DEFAULT_PROGRAMS = [
   ['ybti-ip', 'YBTI 독서성향 콘텐츠 연계'],
   ['integrity-coop', '청렴·윤리경영 협력'],
   ['junior-story', '어린이기자단 취재·동네 이야기 협력'],
-  ['child-member', '어린이 도서관 회원가입 간소화 협력']
+  ['child-member', '어린이 도서관 회원가입 간소화 협력'],
+  ['info-access', '정보 취약계층 지원 협력'],
+  ['kind-voice', '책 읽는 친절 목소리 (CS 교육)']
 ];
 
 /* 처음 한 번만 실행하세요. */
