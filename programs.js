@@ -54,10 +54,9 @@ window.SITE = {
 // 분류별 색 (선택). line 값을 적으면 노선·카드 색을 직접 정할 수 있습니다.
 // 적지 않아도 분류마다 색이 자동으로 정해집니다.
 window.CATEGORIES = {
-  '독서·학습':       { color: '#9fd3ff', icon: 'book' },
-  '공단 고유사업 연계': { color: '#ffb7c5', icon: 'star' },
-  '지역상생':        { color: '#9be3c1', icon: 'house' },
-  '청렴·윤리경영':   { color: '#c9b8f0', icon: 'star' }
+  '도서·독서':   { color: '#9fd3ff', icon: 'book' },
+  '콘텐츠 활용': { color: '#ffb7c5', icon: 'star' },
+  '지역 활동':   { color: '#9be3c1', icon: 'house' }
 };
 
 window.PROGRAMS = [
@@ -66,7 +65,7 @@ window.PROGRAMS = [
     featured: true,
     book: { max: 3, price: 25000 },   // 신청 창에 희망 도서 입력칸(최대 3권, 권당 한도)이 표시됩니다.
     title: '도서 지원',
-    category: '독서·학습',
+    category: '도서·독서',
     owner: '독서경영',
     contact: '02-2103-7782',
     status: 'soon',
@@ -84,7 +83,7 @@ window.PROGRAMS = [
   {
     id: 'reading-spread',
     title: '기업·기관 독서경영 확산',
-    category: '공단 고유사업 연계',
+    category: '도서·독서',
     owner: '독서경영',
     contact: '02-2103-7782',
     status: 'talk',
@@ -101,7 +100,7 @@ window.PROGRAMS = [
   {
     id: 'culture-art',
     title: '문화예술 협력 프로젝트',
-    category: '공단 고유사업 연계',
+    category: '콘텐츠 활용',
     owner: '예술로 협력',
     contact: '02-2103-7782',
     status: 'talk',
@@ -118,7 +117,7 @@ window.PROGRAMS = [
   {
     id: 'local-activity',
     title: '지역 독서·문화활동',
-    category: '지역상생',
+    category: '지역 활동',
     owner: '지역상생',
     contact: '02-2103-7782',
     status: 'talk',
@@ -135,7 +134,7 @@ window.PROGRAMS = [
   {
     id: 'ybti-ip',
     title: 'YBTI 독서성향 콘텐츠 연계',
-    category: '공단 고유사업 연계',
+    category: '콘텐츠 활용',
     owner: '독서경영',
     contact: '02-2103-7782',
     status: 'talk',
@@ -158,7 +157,7 @@ window.PROGRAMS = [
   {
     id: 'integrity-coop',
     title: '청렴·윤리경영 협력',
-    category: '청렴·윤리경영',
+    category: '콘텐츠 활용',
     owner: '청렴·윤리경영',
     contact: '02-2103-7782',
     status: 'talk',
@@ -181,7 +180,7 @@ window.PROGRAMS = [
   {
     id: 'junior-story',
     title: '어린이기자단 취재·동네 이야기 협력',
-    category: '지역상생',
+    category: '지역 활동',
     owner: '용마루어린이도서관',
     contact: '02-2103-7782',
     status: 'open',
@@ -217,14 +216,9 @@ window.PROGRAMS = [
   */
 ];
 
-/* 공개 승인된 제안 (type: 'together' = 협력사업 제안 / 'resource' = 자원 연계 제안)
-window.PROPOSALS = [
-  { type: 'together', org: '○○ 상인회', kind: '소상공인', title: '상인 대상 독서 교육 공동 추진 제안', body: '…', date: '2026-11' },
-  { type: 'resource', org: '△△ 기업', kind: '기업',     title: '임직원 재능나눔 연계 제안', body: '…', date: '2026-11' }
-];
+/* 공개 승인된 제안 — 총괄이 공개를 승인한 것만 아래 PROPOSALS 안에 한 블록씩 추가하세요.
+   (type: 'together' = 협력사업 제안 / 'resource' = 자원 연계 제안, 연락처·개인정보는 절대 적지 않습니다.)
+   예)
+   { type: 'together', org: '○○ 상인회', kind: '소상공인', title: '제목', body: '내용', date: '2026-11' },
 */
-window.PROPOSALS = [
-  // example: true 는 '예시' 표시가 붙고 협력 의사 전달 버튼이 나타나지 않습니다. 실제 제안이 생기면 예시를 지우세요.
-  { type: 'together', org: '○○ 상인회', kind: '소상공인', title: '상인 대상 독서 교육 공동 추진 제안', body: '상인회 회원을 대상으로 한 독서 교육을 공단과 함께 기획하고, 상인회 사무실을 교육 공간으로 제공하고자 합니다.', example: true },
-  { type: 'resource', org: '△△ 기업', kind: '기업', title: '임직원 재능나눔 연계 제안', body: '임직원이 보유한 재능을 활용해 지역주민 대상 강좌를 운영하고자 하며, 공단 시설의 활용을 협의하고자 합니다.', example: true }
-];
+window.PROPOSALS = [];
