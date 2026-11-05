@@ -202,6 +202,10 @@ pre{white-space:pre-wrap;word-break:break-word;background:#f7f6f1;border:1px sol
 .bar .btn:hover{background:#ff9f8a;border-color:#ff9f8a}
 .linkx{background:none;border:0;color:#cdd3ee;text-decoration:underline;cursor:pointer;min-height:44px;padding:0 10px;font-size:14.5px}
 body.hasbar{padding-bottom:84px}
+.gal{display:flex;gap:10px;overflow-x:auto;margin:12px 0;padding-bottom:6px}
+.gal figure{margin:0;flex:0 0 auto}
+.gal img{display:block;height:190px;width:auto;max-width:none;border:2px solid #cfcde0;border-radius:10px;background:#fff}
+.gal figcaption{font-size:13px;color:var(--muted);margin-top:4px;text-align:center}
 .bk{display:grid;grid-template-columns:1.4fr 1fr 110px;gap:8px;margin:0 0 8px}
 .bk input{width:100%;padding:10px 12px;border:2px solid #cfcde0;border-radius:10px;background:#fff;font-size:16px;min-height:46px}
 .bk input:focus{border-color:var(--navy);outline:0;box-shadow:0 0 0 3px #d5dbf3}
@@ -491,6 +495,7 @@ function showDetail(id){
   openDlg('사업 상세',
     '<span class="pill" style="background:'+esc(lineColor(p.category))+'">'+esc(p.category)+'</span> <span class="st '+s[1]+'">'+esc(s[0])+'</span>'+
     '<h2>'+esc(p.title)+'</h2><p>'+esc(p.summary)+'</p>'+
+    (p.images&&p.images.length?'<div class="gal">'+p.images.map(m=>'<figure><img src="'+esc(m.src)+'" alt="'+esc(m.alt||'')+'" loading="lazy"><figcaption>'+esc(m.cap||'')+'</figcaption></figure>').join('')+'</div>':'')+
     '<dl>'+rows.map(r=>'<div><dt>'+esc(r[0])+'</dt><dd>'+esc(r[1])+'</dd></div>').join('')+'</dl>'+
     '<div class="row">'+intBtn(p.id,'')+
     '<button type="button" class="btn" data-open="form" data-type="interest" data-program="'+esc(p.id)+'">관심 사업 등록</button>'+
