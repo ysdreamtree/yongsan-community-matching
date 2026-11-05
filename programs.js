@@ -136,6 +136,11 @@ window.PROGRAMS = [
     period: '협의 후 결정',
     how: '관심 사업 등록 또는 협력 제안으로 활용을 희망하는 방식을 접수',
     notes: '콘텐츠 이용 범위·조건은 협의 후 공단 승인 절차에 따릅니다. 승인 없이 복제·변형·상업적 이용을 할 수 없습니다.',
+    images: [   // 사업 상세 창에 표시되는 이미지 (images 폴더에 파일을 넣고 이름을 적습니다)
+      { src: 'images/ybti-start.png',  alt: 'YBTI 시작 화면: 푸용이와 함께 독서 캐릭터 찾기', cap: '시작 화면' },
+      { src: 'images/ybti-quest.png',  alt: 'YBTI 퀘스트 화면: 맞아·아니야로 답하며 사다리 길 이동', cap: '문항 응답' },
+      { src: 'images/ybti-result.png', alt: 'YBTI 결과 화면: 독서 캐릭터 유형과 독서처방전', cap: '결과 화면' }
+    ],
     tags: ['YBTI', '독서성향', '콘텐츠', '저작권']
   },
   {
