@@ -28,7 +28,7 @@ var HEAD = ['접수시각', '접수번호', '유형', '관심·관련 사업', '
 var TYPES = { interest: '관심 사업', together: '협력 제안', resource: '자원 연계 제안', recommend: '협력 대상 추천' };
 var STATUS_LIST = ['접수', '확인 중', '연락 완료', '협의 중', '완료', '제외(스팸)'];
 var DEFAULT_PROGRAMS = [
-  ['book-support', '독서꾸러미 장기대출'],
+  ['book-support', '도서 지원'],
   ['reading-spread', '기업·기관 독서경영 확산'],
   ['culture-art', '문화예술 협력 프로젝트'],
   ['local-activity', '지역 독서·문화활동'],
