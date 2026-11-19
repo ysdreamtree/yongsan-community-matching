@@ -606,9 +606,9 @@ const BOOKP=PROGRAMS.find(p=>p.book)||null;
 function bookFields(){
   if(!BOOKP)return '';
   const b=BOOKP.book,n=b.max||3;let rows='';
-  for(let i=1;i<=n;i++)rows+='<div class="bkn">'+i+'번째 도서'+(i===1?' (필수)':' (선택)')+'</div><div class="bk"><input name="bt'+i+'" maxlength="80" placeholder="도서명" aria-label="'+i+'번째 도서명"><input name="ba'+i+'" maxlength="60" placeholder="저자·출판사 (선택)" aria-label="'+i+'번째 저자·출판사"><input name="bp'+i+'" inputmode="numeric" maxlength="7" placeholder="정가(원)" aria-label="'+i+'번째 정가"></div>';
-  return '<fieldset class="fs" id="w-book" hidden><legend>희망 도서 (사업장당 최대 '+n+'권, 권당 '+Number(b.price||0).toLocaleString()+'원 이내)</legend>'+(isApply(BOOKP)?'':'<p class="tip" style="margin:6px 0 10px">신청 접수 시작 전에는 도서를 입력하지 않아도 관심 사업으로 등록할 수 있습니다.</p>')+rows+
-    '<label class="fld" style="margin-top:10px">업무·생활 고민 (기대하는 인사이트, 선택)<textarea name="bconcern" maxlength="500" placeholder="예: 신입 직원과 소통하는 방법이 고민입니다." style="min-height:90px"></textarea></label></fieldset>';
+  for(let i=1;i<=n;i++)rows+='<div class="bkn">'+i+'번째 도서'+(i===1?' (필수)':' (선택)')+'</div><div class="bk"><input name="bt'+i+'" maxlength="80" placeholder="도서명" aria-label="'+i+'번째 도서명"><input name="ba'+i+'" maxlength="60" placeholder="저자·출판사 (선택)" aria-label="'+i+'번째 저자·출판사"><input name="bp'+i+'" inputmode="numeric" maxlength="7" placeholder="정가(원, 선택)" aria-label="'+i+'번째 정가"></div>';
+  return '<fieldset class="fs" id="w-book" hidden><legend>희망 도서 (최대 '+n+'권'+(b.price?', 권당 '+Number(b.price).toLocaleString()+'원 이내':'')+')</legend>'+(isApply(BOOKP)?'':'<p class="tip" style="margin:6px 0 10px">신청 접수 시작 전에는 도서를 입력하지 않아도 관심 사업으로 등록할 수 있습니다.</p>')+rows+
+    '<label class="fld" style="margin-top:10px">함께 읽고 싶은 이유·활용 계획 (선택)<textarea name="bconcern" maxlength="500" placeholder="예: 직원 휴게실에 비치해 함께 읽고 싶습니다." style="min-height:90px"></textarea></label></fieldset>';
 }
 function readBooks(f){
   if(!BOOKP)return{text:'',err:''};
@@ -617,13 +617,13 @@ function readBooks(f){
     const t=f['bt'+i].value.trim(),a=f['ba'+i].value.trim(),pr=f['bp'+i].value.replace(/[^0-9]/g,'');
     if(!t&&!a&&!pr)continue;
     if(!t)return{text:'',err:i+'번째 도서명을 입력해 주세요.'};
-    if(!pr)return{text:'',err:i+'번째 도서의 정가를 입력해 주세요.'};
+    if(!pr&&max)return{text:'',err:i+'번째 도서의 정가를 입력해 주세요.'};
     if(max&&Number(pr)>max)return{text:'',err:i+'번째 도서 정가가 권당 한도('+max.toLocaleString()+'원)를 넘습니다.'};
-    list.push(i+'. '+t+(a?' / '+a:'')+' / 정가 '+Number(pr).toLocaleString()+'원');
+    list.push(i+'. '+t+(a?' / '+a:'')+(pr?' / 정가 '+Number(pr).toLocaleString()+'원':''));
   }
   if(!list.length)return isApply(BOOKP)?{text:'',err:'희망 도서를 1권 이상 입력해 주세요.'}:{text:'',err:''};
   const c=f.bconcern.value.trim();
-  return{text:'[도서 지원 신청 · 희망 도서]\n'+list.join('\n')+(c?'\n[업무·생활 고민] '+c:''),err:''};
+  return{text:'[독서꾸러미 신청 · 희망 도서]\n'+list.join('\n')+(c?'\n[신청 사유] '+c:''),err:''};
 }
 function showForm(o){
   const ref=o.ref!=null?PROPOSALS[o.ref]:null;
